@@ -21,7 +21,8 @@ import Register from "../pages/register/Register";
         },
         {
           path: "/allFood",
-          element: <All_food />
+          element: <All_food />,
+          loader: () => fetch(`http://localhost:5000/all_foods`)
         },
         {
           path: "/blog",

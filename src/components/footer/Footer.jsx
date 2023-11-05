@@ -9,6 +9,8 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 
+import { HiLocationMarker } from "react-icons/hi";
+import { AiFillPhone, AiOutlineMail } from "react-icons/ai";
 
 const Footer = () => {
   return (
@@ -47,20 +49,23 @@ const Footer = () => {
             <header className="text-white text-lg font-semibold mb-4">
               WORKING TIME
             </header>
-            <div className="link link-hover flex gap-1">
-              <p>
-                123 St 3, Restaurant Food & Drinks, Near Bala Ji Chownk,
-                Ludhiana, INDIA
-              </p>{" "}
+            <div className="space-y-3">
+              <a className="link link-hover flex gap-1">
+                <HiLocationMarker className="text-xl text-[#ffa41f]" />
+                <p>
+                  123 St 3, Restaurant Food & <br /> Drinks, Near Bala Ji Chownk,
+                  Ludhiana, INDIA
+                </p>{" "}
+              </a>
+              <a className="link link-hover flex gap-1">
+                <AiFillPhone className="text-xl text-[#ffa41f]" />
+                <p>1800 123 0000, +91 123457890</p>
+              </a>
+              <a className="link link-hover flex gap-1">
+                <AiOutlineMail className="text-xl text-[#ffa41f]" />
+                <p>Info@restaurant.com</p>
+              </a>
             </div>
-            <a className="link link-hover flex gap-1">
-              'phone icon'
-              <p>1800 123 0000, +91 123457890</p>
-            </a>
-            <a className="link link-hover flex gap-1">
-              'email'
-              <p>Info@restaurant.com</p>
-            </a>
           </nav>
         </footer>
         <footer className="footer flex text-white justify-between items-center px-10 py-4 border-t border-base-300">
