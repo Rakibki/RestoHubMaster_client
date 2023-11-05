@@ -8,6 +8,7 @@ import All_food from "../pages/all_food/All_food";
 import Blog from "../pages/blog/Blog";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
+import FoodDetails from "../pages/food_details/FoodDetails";
 
   const router = createBrowserRouter([
     {
@@ -22,7 +23,6 @@ import Register from "../pages/register/Register";
         {
           path: "/allFood",
           element: <All_food />,
-          loader: () => fetch(`http://localhost:5000/all_foods`)
         },
         {
           path: "/blog",
@@ -35,6 +35,11 @@ import Register from "../pages/register/Register";
         {
           path: "/register",
           element: <Register />
+        },
+        {
+          path: "/food_details/:id",
+          element: <FoodDetails />,
+          loader: ({params}) => fetch(`http://localhost:5000/product_details/${params.id}`)
         }
       ],
     },

@@ -51,7 +51,6 @@ const AuthProvaider = ({children}) => {
       })
     }, [])
 
-    console.log(user);
 
     const userInfo = {
       user,
