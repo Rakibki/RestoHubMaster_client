@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { authContext } from "../../providers/AuthProvaider";
 
 const Navber = ({ children }) => {
-  const { user } = useContext(authContext);
+  const { user, logOut } = useContext(authContext);
 
   const navitems = (
     <>
@@ -42,6 +42,14 @@ const Navber = ({ children }) => {
     </>
   );
 
+const handleLogOut = () => {
+  logOut()
+  .then((res) => {
+    console.log("Logi n out");
+  })
+  .catch((e) => console.log(e))
+}
+
   return (
     <Container>
       <div className="drawer">
@@ -76,7 +84,9 @@ const Navber = ({ children }) => {
             <div className="flex-none hidden lg:block">
               <ul className="flex mr-10 items-center gap-4">
                 {/* Navbar menu content here */}
-                <div className="flex gap-5 text-base font-medium">{navitems}</div>
+                <div className="flex gap-5 text-base font-medium">
+                  {navitems}
+                </div>
               </ul>
             </div>
             {user ? (
@@ -95,6 +105,9 @@ const Navber = ({ children }) => {
                     className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
                   >
                     {/* container */}
+                    <button onClick={handleLogOut} className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white">
+                      Log out
+                    </button>
                   </ul>
                 </div>
               </div>

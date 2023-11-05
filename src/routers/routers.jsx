@@ -9,6 +9,8 @@ import Blog from "../pages/blog/Blog";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import FoodDetails from "../pages/food_details/FoodDetails";
+import Checkout from "../pages/checkout/Checkout";
+import PrivateRoute from "./PrivateRoute";
 
   const router = createBrowserRouter([
     {
@@ -39,6 +41,11 @@ import FoodDetails from "../pages/food_details/FoodDetails";
         {
           path: "/food_details/:id",
           element: <FoodDetails />,
+          loader: ({params}) => fetch(`http://localhost:5000/product_details/${params.id}`)
+        },
+        {
+          path: "/checkout/:id",
+          element: <PrivateRoute> <Checkout /> </PrivateRoute>,
           loader: ({params}) => fetch(`http://localhost:5000/product_details/${params.id}`)
         }
       ],

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Page_title from "../../shared/page_title/Page_title";
 import login from "../../assets/images/login.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../../providers/AuthProvaider";
 import loginimg from "../../assets/images/login.jpg";
 import { FaFacebookF } from "react-icons/fa";
@@ -9,6 +9,9 @@ import { AiOutlineGoogle, AiFillGithub } from "react-icons/ai";
 
 const Login = () => {
   const { loginUser } = useContext(authContext);
+  const navigate = useNavigate()
+  const location = useLocation()
+  console.log(location);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -18,6 +21,7 @@ const Login = () => {
     loginUser(email, password)
       .then((res) => {
         console.log("login User");
+        navigate(location.state ? location.state : "/")
       })
       .catch((e) => console.log(e.message));
   };
