@@ -1,17 +1,43 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Container from "../../shared/Container/Container";
+import logo from "../../assets/images/logo.png";
+import { useContext } from "react";
+import { authContext } from "../../providers/AuthProvaider";
 
 const Navber = ({ children }) => {
+  const { user } = useContext(authContext);
+
   const navitems = (
     <>
       <li>
-        <NavLink>Home</NavLink>
+        <NavLink
+          className={({ isActive, isPending }) =>
+            isPending ? "" : isActive ? "text-[#ffa41f] font-semibold" : ""
+          }
+          to={"/"}
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink>All Food</NavLink>
+        <NavLink
+          to={"/allFood"}
+          className={({ isActive, isPending }) =>
+            isPending ? "" : isActive ? "text-[#ffa41f] font-semibold" : ""
+          }
+        >
+          All Food
+        </NavLink>
       </li>
       <li>
-        <NavLink>Blog</NavLink>
+        <NavLink
+          to={"/blog"}
+          className={({ isActive, isPending }) =>
+            isPending ? "" : isActive ? "text-[#ffa41f] font-semibold" : ""
+          }
+        >
+          Blog
+        </NavLink>
       </li>
     </>
   );
@@ -22,7 +48,7 @@ const Navber = ({ children }) => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="w-full navbar bg-base-300">
+          <div className="w-full flex justify-between px-10 py-2 navbar bg-[#374354] text-white">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -44,13 +70,41 @@ const Navber = ({ children }) => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2">Navbar Title</div>
+            <div className="px-2 mx-2">
+              <img src={logo} alt="" />
+            </div>
             <div className="flex-none hidden lg:block">
-              <ul className="flex gap-3">
+              <ul className="flex mr-10 items-center gap-4">
                 {/* Navbar menu content here */}
-                {navitems}
+                <div className="flex gap-5 text-base font-medium">{navitems}</div>
               </ul>
             </div>
+            {user ? (
+              <div>
+                <h2 className="mr-4">{user?.displayName}</h2>
+                <div className="dropdown dropdown-bottom dropdown-end">
+                  <label tabIndex={0} className="">
+                    <img
+                      className="w-[50px] cursor-pointer h-[50px] rounded-full"
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                  >
+                    {/* container */}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <Link className="ml-10" to={"/login"}>
+                <button className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white">
+                  Log In
+                </button>
+              </Link>
+            )}
           </div>
           {children}
         </div>

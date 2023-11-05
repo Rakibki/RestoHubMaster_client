@@ -20,7 +20,7 @@ import Register from "../pages/register/Register";
           element: <Home />
         },
         {
-          path: "/all-food",
+          path: "/allFood",
           element: <All_food />
         },
         {

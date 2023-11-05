@@ -35,7 +35,7 @@ const Chefs = () => {
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusa ntium doloremque.
             </p>
-            <div className="card-actions text-[#878686] gap-2 text-lg mt-4 justify-center">
+            <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
               <FaFacebookF />
               <FaTwitter />
               <FaInstagram />
@@ -57,7 +57,7 @@ const Chefs = () => {
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusa ntium doloremque.
             </p>
-            <div className="card-actions text-[#878686] gap-2 text-lg mt-4 justify-center">
+            <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
               <FaFacebookF />
               <FaTwitter />
               <FaInstagram />
@@ -79,7 +79,7 @@ const Chefs = () => {
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusa ntium doloremque.
             </p>
-            <div className="card-actions text-[#878686] gap-2 text-lg mt-4 justify-center">
+            <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
               <FaFacebookF />
               <FaTwitter />
               <FaInstagram />
@@ -101,7 +101,7 @@ const Chefs = () => {
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusa ntium doloremque.
             </p>
-            <div className="card-actions text-[#878686] gap-2 text-lg mt-4 justify-center">
+            <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
               <FaFacebookF />
               <FaTwitter />
               <FaInstagram />

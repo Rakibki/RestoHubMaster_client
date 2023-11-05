@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Page_title from "../../shared/page_title/Page_title";
 import login from "../../assets/images/login.jpg";
 import { Link } from "react-router-dom";
+import { authContext } from "../../providers/AuthProvaider";
+import { updateProfile } from "firebase/auth";
+import auth from "../../firebase/firebase.confic";
 
 const Register = () => {
+  const { createUser } = useContext(authContext);
+
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -11,9 +16,17 @@ const Register = () => {
     const photo = e.target.photo.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    
-    console.log(name, email, photo, password);
-   
+
+    createUser(email, password)
+      .then((res) => {
+        console.log("create User");
+
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photo,
+        });
+      })
+      .catch((e) => console.log(e.message));
   };
 
   return (
