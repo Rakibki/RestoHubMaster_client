@@ -79,7 +79,7 @@ const Navber = ({ children }) => {
               </label>
             </div>
             <div className="px-2 mx-2">
-              <img src={logo} alt="" />
+              <Link to={"/"}><img src={logo} alt="" /></Link>
             </div>
             <div className="flex-none hidden lg:block">
               <ul className="flex mr-10 items-center gap-4">
@@ -95,7 +95,7 @@ const Navber = ({ children }) => {
                 <div className="dropdown dropdown-bottom dropdown-end">
                   <label tabIndex={0} className="">
                     <img
-                      className="w-[50px] cursor-pointer h-[50px] rounded-full"
+                      className="w-[45px] border-2 border-[#ffa41f] cursor-pointer h-[45px] rounded-full"
                       src={user?.photoURL}
                       alt=""
                     />

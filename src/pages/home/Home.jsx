@@ -6,6 +6,7 @@ import Gallery from "../Gallery/Gallery";
 import Chooss from "./Choose"
 import About_section from "./About_section";
 import Clients from "./Clients.JSX";
+import Top_food from "./Top_food"
 
 const Home = () => {
   const { user } = useContext(authContext);
@@ -13,11 +14,12 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <Chefs />
-      <Gallery />
-      <Chooss />
-      <Clients/>
+      <Top_food />
       <About_section />
+      <Chefs />
+      <Chooss />
+      <Gallery />
+      <Clients/>
     </div>
   );
 };

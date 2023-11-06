@@ -12,7 +12,7 @@ import {
 
 const Chefs = () => {
   return (
-    <div className="w-full h-screen bg-white">
+    <div className="w-full mt-32 h-screen bg-white">
       <p className="text-center mt-10">tasty and crunchy</p>
       <h2 className="text-center font-bold text-5xl">Our Chefs</h2>
       <p className="text-center mt-4 mb-10">
