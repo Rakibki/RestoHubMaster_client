@@ -42,13 +42,13 @@ const Navber = ({ children }) => {
     </>
   );
 
-const handleLogOut = () => {
-  logOut()
-  .then((res) => {
-    console.log("Logi n out");
-  })
-  .catch((e) => console.log(e))
-}
+  const handleLogOut = () => {
+    logOut()
+      .then((res) => {
+        console.log("Logi n out");
+      })
+      .catch((e) => console.log(e));
+  };
 
   return (
     <Container>
@@ -102,10 +102,27 @@ const handleLogOut = () => {
                   </label>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                    className="dropdown-content z-[1] menu bg-white p-6 shadow rounded-box w-72"
                   >
                     {/* container */}
-                    <button onClick={handleLogOut} className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white">
+                    <Link
+                      to={"/add_food"}
+                      className="text-base mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
+                    >
+                      <p>Add Food Item</p>
+                    </Link>
+
+                    <Link to={"/my_added_food"} className="text-base mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 ">
+                      <p>My Added Food</p>
+                    </Link>
+
+                    <Link to={"my_oder_food"} className="text-base mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 ">
+                      <p>My Oder Food</p>
+                    </Link>
+                    <button
+                      onClick={handleLogOut}
+                      className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white"
+                    >
                       Log out
                     </button>
                   </ul>

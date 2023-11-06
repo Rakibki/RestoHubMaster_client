@@ -11,6 +11,9 @@ import Register from "../pages/register/Register";
 import FoodDetails from "../pages/food_details/FoodDetails";
 import Checkout from "../pages/checkout/Checkout";
 import PrivateRoute from "./PrivateRoute";
+import Add_food from "../pages/Add_food/Add_food";
+import My_added_food from "../pages/my_added_food/My_added_food";
+import My_oder_food from "../pages/my_oder_food/My_oder_food";
 
   const router = createBrowserRouter([
     {
@@ -47,6 +50,18 @@ import PrivateRoute from "./PrivateRoute";
           path: "/checkout/:id",
           element: <PrivateRoute> <Checkout /> </PrivateRoute>,
           loader: ({params}) => fetch(`http://localhost:5000/product_details/${params.id}`)
+        },
+        {
+          path: "/add_food",
+          element: <PrivateRoute><Add_food /></PrivateRoute>
+        },
+        {
+          path: "my_added_food",
+          element: <My_added_food />
+        },
+        {
+          path: "my_oder_food",
+          element: <My_oder_food />
         }
       ],
     },
