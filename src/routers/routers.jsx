@@ -57,7 +57,7 @@ import My_oder_food from "../pages/my_oder_food/My_oder_food";
         },
         {
           path: "my_added_food",
-          element: <My_added_food />
+          element: <PrivateRoute> <My_added_food /> </PrivateRoute>
         },
         {
           path: "my_oder_food",

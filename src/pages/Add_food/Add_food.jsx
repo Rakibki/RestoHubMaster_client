@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { authContext } from "../../providers/AuthProvaider";
+import axios from "axios";
 
 const Add_food = () => {
   const { user } = useContext(authContext);
+
 
   const handle_Add_food = (e) => {
     e.preventDefault();
@@ -18,7 +20,14 @@ const Add_food = () => {
       Price: e.target.Price.value,
       count: 0
     };
-    console.log(food_info);
+
+    axios.post("http://localhost:5000/add_food_item", food_info)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((e) => {
+    console.log(e?.message)
+  })
   };
 
   return (
@@ -86,9 +95,11 @@ const Add_food = () => {
               name="Categoty"
               id=""
             >
-              <option value="one">One </option>
-              <option value="one">One </option>
-              <option value="one">One </option>
+              <option value="">Gategory</option>
+              <option value="Desserts ">Desserts</option>
+              <option value="Appetizers">Appetizers</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Family Dishes">Family Dishes</option>
             </select>
           </div>
           <button

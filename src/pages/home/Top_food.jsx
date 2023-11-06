@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import Loadding from "../../shared/Loadiing";
 import Single_food from "../all_food/SingleFood";
+import { Link } from "react-router-dom";
 
 const Top_food = () => {
   const { isPending, error, data } = useQuery({
@@ -15,7 +16,7 @@ const Top_food = () => {
   }
 
   return (
-    <div className="w-full mt-14 px-24 mb-10">
+    <div className="w-full mt-14 px-24">
       <div className="flex mb-4 gap-3">
         <div className="w-3 h-8 bg-[#ffa41f]"></div>
         <h1 className="text-3xl font-semibold">Top Food</h1>
@@ -25,6 +26,16 @@ const Top_food = () => {
         {data.map((food) => (
           <Single_food food={food} />
         ))}
+      </div>
+
+      <div className="flex mt-6 mb-10 justify-center">
+        <Link to={"/allFood"}>
+          <button
+            className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white"
+          >
+            See All
+          </button>
+        </Link>
       </div>
     </div>
   );
