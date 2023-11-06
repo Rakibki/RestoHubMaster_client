@@ -107,7 +107,7 @@ const Login = () => {
                 SING IN
               </button>
             </div>
-            <Link to={"/login"}>
+            <Link to={"/register"}>
               <p className="mt-3 transition-all hover:underline cursor-pointer hover:text-[#ffa41f]">
                 Register account
               </p>

@@ -4,11 +4,14 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { authContext } from "../../providers/AuthProvaider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 
 const Checkout = () => {
   const [startDate, setStartDate] = useState(new Date());
   const food = useLoaderData();
   const { user } = useContext(authContext);
+
+  console.log(food);
 
   const handlePurchase = (e) => {
     e.preventDefault();
@@ -20,9 +23,11 @@ const Checkout = () => {
       Price: e.target.Price.value,
       Quentity: e.target.Quentity.value,
       date: startDate,
+      image_URL: food.image
     };
-
-    console.log(oderinfo);
+    axios.post(`http://localhost:5000/All_oder`, oderinfo).then((res) => {
+      console.log(res.data);
+    });
   };
 
   return (
@@ -108,7 +113,9 @@ const Checkout = () => {
             <h1 className="text-xl">{food.Food_name}</h1>
             <div className="flex items-center gap-4">
               <p className="text-lg mt-3 font-semibold">${food.Price}</p>
-              <p className="text-base mt-3 font-semibold">${food.Regual_Price}</p>
+              <p className="text-base mt-3 font-semibold">
+                ${food.Regual_Price}
+              </p>
             </div>
 
             <div className="flex">*****</div>
