@@ -11,15 +11,24 @@ import { Helmet } from "react-helmet";
 const My_oder_food = () => {
   const { user } = useContext(authContext);
 
+  // const { isPending, error, data, refetch } = useQuery({
+  //   queryKey: ["repoData", "ders"],
+  //   queryFn: () =>
+  //     axios
+  //       .get(`http://localhost:5000/my_oder_food?email=${user?.email}`, {
+  //         withCredentials: true,
+  //       })
+  //       .then((res) => res.json()),
+  // });
+
   const { isPending, error, data, refetch } = useQuery({
-    queryKey: ["repoData"],
+    queryKey: ["repoData", "ders"],
     queryFn: () =>
-      axios
-        .get(`http://localhost:5000/my_oder_food?email=${user?.email}`, {
-          withCredentials: true,
-        })
-        .then((res) => res.json()),
+      axios.get(`http://localhost:5000/my_oder_food?email=${user?.email}`, {
+        withCredentials: true,
+      }),
   });
+
 
   if (isPending) {
     return <Loadding />;
@@ -37,7 +46,6 @@ const My_oder_food = () => {
         axios
           .delete(`http://localhost:5000/my_Oder_food_delete/${id}`)
           .then((res) => {
-            console.log(res);
             refetch();
           });
         swal("Poof! Your imaginary file has been deleted!", {
@@ -56,13 +64,13 @@ const My_oder_food = () => {
         <title>My Oder Food</title>
       </Helmet>
 
-      {data.length < 1 && (
+      {data.data.length < 1 ? (
         <p className="text-3xl font-semibold text-center text-[#ffa41f] my-6">
           You have no orders
         </p>
-      )}
+      ) : ""}
 
-      {data.length > 0 && (
+      {data.data.length > 0 && (
         <div className="mt-10 p-16">
           <div className="overflow-x-auto">
             <table className="table">
@@ -77,7 +85,7 @@ const My_oder_food = () => {
                 </tr>
               </thead>
               <tbody>
-                {data.map((food) => (
+                {data.data.map((food) => (
                   <Single_Oder_Row
                     handleDeleteFood={() => handleDeleteFood(food._id)}
                     key={food?._id}

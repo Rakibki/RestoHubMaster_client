@@ -37,6 +37,7 @@ const Checkout = () => {
           .post(`http://localhost:5000/All_oder/${food._id}`, oderinfo)
           .then((res) => {
             console.log(res.data);
+            swal("Good job!", "Order placed successfully", "success");
           });
       }
     } else {

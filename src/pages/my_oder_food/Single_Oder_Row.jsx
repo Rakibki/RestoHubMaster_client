@@ -1,9 +1,7 @@
 import React from "react";
-import {AiOutlineClose} from "react-icons/ai"
-
+import { AiOutlineClose } from "react-icons/ai";
 
 const Single_Oder_Row = ({ food, handleDeleteFood }) => {
-
   return (
     <tr className="border-2">
       <td>
@@ -22,7 +20,12 @@ const Single_Oder_Row = ({ food, handleDeleteFood }) => {
         <h2 className="text-xl font-semibold">${food?.Price}</h2>
       </td>
       <th>
-        <button onClick={handleDeleteFood} className="p-4 text-white font-bold bg-[#ffa41f]"><AiOutlineClose /></button>
+        <button
+          onClick={() => handleDeleteFood(food._id)}
+          className="p-4 text-white font-bold bg-[#ffa41f]"
+        >
+          <AiOutlineClose />
+        </button>
       </th>
     </tr>
   );

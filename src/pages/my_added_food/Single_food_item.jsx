@@ -6,7 +6,7 @@ const Single_food_item = ({ food, handleDlete }) => {
   return (
     <div className="grid border-2 gap-4 grid-cols-5">
       <div className="col-span-2">
-        <img className="w-full h-full" src={food?.image_URL} alt="" />
+        <img className="w-full h-full" src={food.image_URL} alt="" />
       </div>
       <div className="col-span-3">
         <h1 className="text-2xl mt-6 font-medium">{food?.Food_Name}</h1>
