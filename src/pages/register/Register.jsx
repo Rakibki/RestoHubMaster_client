@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Page_title from "../../shared/page_title/Page_title";
 import login from "../../assets/images/login.jpg";
 import { Link } from "react-router-dom";
@@ -9,18 +9,58 @@ import auth from "../../firebase/firebase.confic";
 import { FaFacebookF } from "react-icons/fa";
 import { AiOutlineGoogle, AiFillGithub } from "react-icons/ai";
 import loginimg from "../../assets/images/login.jpg";
-
+import swal from "sweetalert2";
+import axios from "axios";
 
 const Register = () => {
-  const { createUser } = useContext(authContext);
+  const { createUser, loginWithGoogle, loginWithGithub } =
+    useContext(authContext);
+  const [error, setError] = useState("");
+
+  const handleFacebook = () => {
+    // alert("facebook");
+  };
+
+  const hanldeGoogle = () => {
+    loginWithGoogle()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const handleGithub = () => {
+    loginWithGithub()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((e) => console.log(e));
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
+    setError("");
 
     const name = e.target.name.value;
     const photo = e.target.photo.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
+
+    if (password.length < 6) {
+      return setError("It should be at least 6 characters long.");
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      return setError("It should contain at least one uppercase letter.");
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      return setError("It should contain at least one uppercase letter.");
+    }
+
+    if (!/[!@#$%^&*]/.test(password)) {
+      return setError("It should contain at least one special character");
+    }
 
     createUser(email, password)
       .then((res) => {
@@ -30,8 +70,18 @@ const Register = () => {
           displayName: name,
           photoURL: photo,
         });
+
+        axios.post("http://localhost:5000/users", {
+          name,
+          email,
+          photo,
+          password,
+        });
       })
-      .catch((e) => console.log(e.message));
+      .catch((e) => {
+        console.log(e.message);
+        setError(e.message);
+      });
   };
 
   return (
@@ -39,7 +89,7 @@ const Register = () => {
       <Page_title>Register Now</Page_title>
 
       <div className="flex w-[80%] gap-6 mx-auto my-16 h-[450px] border-2">
-         <div className="w-[40%] relative">
+        <div className="w-[40%] relative">
           <img className="absolute top-0 w-full h-full" src={loginimg} alt="" />
 
           <div className="absolute text-white p-6 top-0 w-full h-full bg-[#000000a6]">
@@ -64,14 +114,14 @@ const Register = () => {
               </div>
 
               <div className="flex mt-3 gap-2 cursor-pointer justify-center bg-[#1cb8eb] items-center text-base p-2">
-                <div className="flex items-center gap-3">
+                <div onClick={hanldeGoogle} className="flex items-center gap-3">
                   <AiOutlineGoogle />
                   <p className="font-semibold">Login with Google</p>
                 </div>
               </div>
 
               <div className="flex mt-3 gap-2 cursor-pointer justify-center bg-[#202b3c] items-center text-base p-2">
-                <div className="flex items-center gap-3">
+                <div onClick={handleGithub} className="flex items-center gap-3">
                   <AiFillGithub />
                   <p className="font-semibold">Login with Github</p>
                 </div>
@@ -119,6 +169,7 @@ const Register = () => {
                 required
                 name="password"
               />
+              <p className="text-sm nt-2 text-red-700">{error}</p>
               <div className="flex items-center justify-between">
                 <button
                   type="submit"

@@ -14,7 +14,7 @@ import { AiFillPhone, AiOutlineMail } from "react-icons/ai";
 
 const Footer = () => {
   return (
-    <div id="container" className="w-full relative h-[600px]">
+    <div id="container" className="w-full relative h-[1200px] md:h-[600px]">
       <div className="absolute p-16 h-full w-full bg-[#000000a6]">
         <footer className="footer p-10 text-white">
           <nav>

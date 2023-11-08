@@ -8,10 +8,30 @@ import { FaFacebookF } from "react-icons/fa";
 import { AiOutlineGoogle, AiFillGithub } from "react-icons/ai";
 
 const Login = () => {
-  const { loginUser } = useContext(authContext);
-  const navigate = useNavigate()
-  const location = useLocation()
-  console.log(location);
+  const { loginUser, loginWithGoogle, loginWithGithub } =
+    useContext(authContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleFacebook = () => {
+    // alert("facebook");
+  };
+
+  const hanldeGoogle = () => {
+    loginWithGoogle()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const handleGithub = () => {
+    loginWithGithub()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((e) => console.log(e));
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,7 +41,7 @@ const Login = () => {
     loginUser(email, password)
       .then((res) => {
         console.log("login User");
-        navigate(location.state ? location.state : "/")
+        navigate(location.state ? location.state : "/");
       })
       .catch((e) => console.log(e.message));
   };
@@ -30,12 +50,11 @@ const Login = () => {
     <div>
       <Page_title>SIGN IN Now</Page_title>
 
-      <div className="flex w-[80%] gap-6 mx-auto my-16 h-[450px] border-2">
-        
-        <div className="w-[40%] relative">
+      <div className="flex w-full md:w-[80%] gap-4 md:gap-6 mx-auto my-16 h-[450px] border-2">
+        <div className="md:w-[40%] w-[60%] relative">
           <img className="absolute top-0 w-full h-full" src={loginimg} alt="" />
 
-          <div className="absolute text-white p-6 top-0 w-full h-full bg-[#000000a6]">
+          <div className="absolute text-white md:p-6 top-0 w-full h-full bg-[#000000a6]">
             <h2 className="text-center font-bold text-3xl">SIGN IN</h2>
             <div className="w-16 mb-10 bg-[#ffa41f] mt-3 h-1 mx-auto"></div>
             <p className="text-center font-medium">
@@ -45,26 +64,29 @@ const Login = () => {
             </p>
 
             <div className="mt-10">
-              <h1 className="text-center mb-6 font-bold text-2xl">
+              <h1 className="text-center mb-6 font-bold text-xl md:text-2xl">
                 LOGIN VIA SOCIAL ACCOUNTS
               </h1>
 
               <div className="flex mt-3 gap-2 cursor-pointer justify-center bg-[#4e71a7] items-center text-base p-2">
-                <div className="flex items-center gap-3">
+                <div
+                  onClick={handleFacebook}
+                  className="flex items-center gap-3"
+                >
                   <FaFacebookF />
                   <p className="font-semibold">Login with Facebook</p>
                 </div>
               </div>
 
               <div className="flex mt-3 gap-2 cursor-pointer justify-center bg-[#1cb8eb] items-center text-base p-2">
-                <div className="flex items-center gap-3">
+                <div onClick={hanldeGoogle} className="flex items-center gap-3">
                   <AiOutlineGoogle />
                   <p className="font-semibold">Login with Google</p>
                 </div>
               </div>
 
               <div className="flex mt-3 gap-2 cursor-pointer justify-center bg-[#202b3c] items-center text-base p-2">
-                <div className="flex items-center gap-3">
+                <div onClick={handleGithub} className="flex items-center gap-3">
                   <AiFillGithub />
                   <p className="font-semibold">Login with Github</p>
                 </div>
@@ -73,7 +95,7 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="w-[60%]">
+        <div className="w-[60%] ">
           <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
               <input
@@ -96,7 +118,11 @@ const Login = () => {
             </div>
 
             <div className="flex my-2 justify-end">
-              <div><p className="hover:underline cursor-pointer text-sm">Forget Password</p></div>
+              <div>
+                <p className="hover:underline cursor-pointer text-sm">
+                  Forget Password
+                </p>
+              </div>
             </div>
 
             <div className="flex items-center justify-between">

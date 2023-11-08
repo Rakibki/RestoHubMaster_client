@@ -16,13 +16,13 @@ const Top_food = () => {
   }
 
   return (
-    <div className="w-full mt-14 px-24">
+    <div className="w-full mt-14 px-16 md:px-24">
       <div className="flex mb-4 gap-3">
         <div className="w-3 h-8 bg-[#ffa41f]"></div>
         <h1 className="text-3xl font-semibold">Top Food</h1>
       </div>
 
-      <div className="grid gap-3 grid-cols-3">
+      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {data.map((food) => (
           <Single_food food={food} />
         ))}

@@ -5,13 +5,12 @@ import { authContext } from "../../providers/AuthProvaider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import { Rate } from "antd";
 
 const Checkout = () => {
   const [startDate, setStartDate] = useState(new Date());
   const food = useLoaderData();
   const { user } = useContext(authContext);
-
-  console.log(food);
 
   const handlePurchase = (e) => {
     e.preventDefault();
@@ -23,11 +22,26 @@ const Checkout = () => {
       Price: e.target.Price.value,
       Quentity: e.target.Quentity.value,
       date: startDate,
-      image_URL: food.image
+      image_URL: food.image,
     };
-    axios.post(`http://localhost:5000/All_oder`, oderinfo).then((res) => {
-      console.log(res.data);
-    });
+
+    if (food.quectity >= oderinfo.Quentity) {
+      if (user?.email === food?.buyer_email) {
+        return swal(
+          "",
+          `This food is added by you so you cannot buy it`,
+          "warning"
+        );
+      } else {
+        axios
+          .post(`http://localhost:5000/All_oder/${food._id}`, oderinfo)
+          .then((res) => {
+            console.log(res.data);
+          });
+      }
+    } else {
+      swal("", `We have ${food.quectity} of food in stock!`, "warning");
+    }
   };
 
   return (
@@ -40,7 +54,7 @@ const Checkout = () => {
       </div>
       <hr />
 
-      <div className="w-[90%] mx-auto flex">
+      <div className="w-[90%] mx-auto md:flex">
         <form onSubmit={handlePurchase}>
           <div className="flex-1 p-6 border-r-2">
             <div>
@@ -109,16 +123,23 @@ const Checkout = () => {
           <div className="w-[200px] h-auto">
             <img src={food.image} alt="" />
           </div>
+
           <div>
             <h1 className="text-xl">{food.Food_name}</h1>
             <div className="flex items-center gap-4">
               <p className="text-lg mt-3 font-semibold">${food.Price}</p>
-              <p className="text-base mt-3 font-semibold">
+              <p className="text-base line-through mt-3 font-semibold">
                 ${food.Regual_Price}
               </p>
             </div>
 
-            <div className="flex">*****</div>
+            <div>
+              <Rate
+                className="text-[#ffa41f] mt-4 mb-4"
+                disabled
+                defaultValue={food?.ratting}
+              />
+            </div>
           </div>
         </div>
       </div>

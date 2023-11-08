@@ -12,7 +12,11 @@ const Navber = ({ children }) => {
       <li>
         <NavLink
           className={({ isActive, isPending }) =>
-            isPending ? "" : isActive ? "text-[#ffa41f] font-semibold" : ""
+            isPending
+              ? ""
+              : isActive
+              ? "text-[#ffa41f] border-b-2 border-[#ffa41f] font-semibold"
+              : ""
           }
           to={"/"}
         >
@@ -23,7 +27,11 @@ const Navber = ({ children }) => {
         <NavLink
           to={"/allFood"}
           className={({ isActive, isPending }) =>
-            isPending ? "" : isActive ? "text-[#ffa41f] font-semibold" : ""
+            isPending
+              ? ""
+              : isActive
+              ? "text-[#ffa41f] border-b-2 border-[#ffa41f] font-semibold"
+              : ""
           }
         >
           All Food
@@ -33,7 +41,11 @@ const Navber = ({ children }) => {
         <NavLink
           to={"/blog"}
           className={({ isActive, isPending }) =>
-            isPending ? "" : isActive ? "text-[#ffa41f] font-semibold" : ""
+            isPending
+              ? ""
+              : isActive
+              ? "text-[#ffa41f] border-b-2 border-[#ffa41f] font-semibold"
+              : ""
           }
         >
           Blog
@@ -79,7 +91,9 @@ const Navber = ({ children }) => {
               </label>
             </div>
             <div className="px-2 mx-2">
-              <Link to={"/"}><img src={logo} alt="" /></Link>
+              <Link to={"/"}>
+                <img src={logo} alt="" />
+              </Link>
             </div>
             <div className="flex-none hidden lg:block">
               <ul className="flex mr-10 items-center gap-4">
@@ -107,16 +121,22 @@ const Navber = ({ children }) => {
                     {/* container */}
                     <Link
                       to={"/add_food"}
-                      className="text-base mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
+                      className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
                     >
                       <p>Add Food Item</p>
                     </Link>
 
-                    <Link to={"/my_added_food"} className="text-base mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 ">
+                    <Link
+                      to={"/my_added_food"}
+                      className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
+                    >
                       <p>My Added Food</p>
                     </Link>
 
-                    <Link to={"my_oder_food"} className="text-base mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 ">
+                    <Link
+                      to={"my_oder_food"}
+                      className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
+                    >
                       <p>My Oder Food</p>
                     </Link>
                     <button
@@ -144,9 +164,11 @@ const Navber = ({ children }) => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="p-4 w-80 min-h-full bg-base-200">
+          <ul className="flex flex-col bg-[#374354] text-white relative gap-2 p-10 w-80 min-h-full">
             {/* Sidebar content here */}
             {navitems}
+
+            <img className="absolute bottom-10" src={logo} alt="" />
           </ul>
         </div>
       </div>

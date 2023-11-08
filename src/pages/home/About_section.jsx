@@ -7,22 +7,23 @@ import Container from "../../shared/Container/Container"
 const About_section = () => {
   return (
     <Container>
-      <div className="w-full p-4 items-center flex h-screen">
-        <div className="flex-1 relative  p-16 overflow-hidden">
-          <img className="w-[400px]" src={about1} alt="" />
+      <div className="w-full p-6 md:p-16 items-center lg:flex">
+        <div data-aos="fade-right" className="flex-1 mx-auto  relative  p-16 overflow-hidden">
+          <img className="w-[100%]" src={about1} alt="" />
           <img
-            className="absolute right-0 w-[300px] bottom-0"
+            className="absolute right-0 w-[60%] bottom-0"
             src={about2}
             alt=""
           />
-          <div className="absolute right-6 top-16">
+          <div className="absolute z-20 right-0 top-16">
             <h1 className="text-5xl text-[#ffa41f] font-bold">1995</h1>
             <p className="uppercase text-[#ffa41f] text-center mt-2">
               Start IN
             </p>
           </div>
         </div>
-        <div className="flex-1 relative p-16">
+
+        <div data-aos="fade-left" className="flex-1 relative p-16">
           <h4 className=" text-[#0c0f26] font-semibold mb-4">
             GRILLED PERFECTION
           </h4>

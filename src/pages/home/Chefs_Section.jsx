@@ -12,100 +12,105 @@ import {
 
 const Chefs = () => {
   return (
-    <div className="w-full mt-32 h-screen bg-white">
-      <p className="text-center mt-10">tasty and crunchy</p>
-      <h2 className="text-center font-bold text-5xl">Our Chefs</h2>
-      <p className="text-center mt-4 mb-10">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedolorm
-        reminusto <br /> doeiusmod tempor incidition ulla mco laboris nisi ut aliquip
-        ex ea commo <br /> condorico consectetur adipiscing elitut aliquip.
-      </p>
+    <div className="flex justify-center">
+      <div className="w-full mx-auto bg-white">
+        <p className="text-center mt-10">tasty and crunchy</p>
+        <h2 className="text-center text-[#ffa41f] font-bold text-5xl">
+          Our Chefs
+        </h2>
+        <p className="text-center mt-4 mb-10">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedolorm
+          reminusto <br /> doeiusmod tempor incidition ulla mco laboris nisi ut
+          aliquip ex ea commo <br /> condorico consectetur adipiscing elitut
+          aliquip.
+        </p>
 
-      <div className="grid gap-3 grid-cols-4">
-        <div className="">
-          <figure>
-            <img src={chef1} />
-          </figure>
-          <div className="p-3">
-            <p className="text-center text-[#292929]">Sofia Mayer </p>
-            <p className="text-center text-[#5d5d5d] uppercase mt-2 mb-3 text-xs">
-              Chef
-            </p>
-            <p className="text-center text-[#989898]">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusa ntium doloremque.
-            </p>
-            <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
-              <FaFacebookF />
-              <FaTwitter />
-              <FaInstagram />
-              <FaLinkedin />
+        <div className="grid gap-3 grid-cols-1  md:grid-cols-2 lg:grid-cols-4">
+          <div data-aos="zoom-out-up" className="border-[1px] hover:shadow-xl">
+            <figure>
+              <img className="mx-auto" src={chef1} />
+            </figure>
+            <div className="p-3">
+              <p className="text-center text-[#292929]">Sofia Mayer </p>
+              <p className="text-center text-[#5d5d5d] uppercase mt-2 mb-3 text-xs">
+                Chef
+              </p>
+              <p className="text-center text-[#989898]">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusa ntium doloremque.
+              </p>
+              <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
+                <FaFacebookF />
+                <FaTwitter />
+                <FaInstagram />
+                <FaLinkedin />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="">
-          <figure>
-            <img src={chef2} />
-          </figure>
-          <div className="p-3">
-            <p className="text-center text-[#292929]">Sofia Mayer </p>
-            <p className="text-center text-[#5d5d5d] uppercase mt-2 mb-3 text-xs">
-              Chef
-            </p>
-            <p className="text-center text-[#989898]">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusa ntium doloremque.
-            </p>
-            <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
-              <FaFacebookF />
-              <FaTwitter />
-              <FaInstagram />
-              <FaLinkedin />
+          <div data-aos="zoom-out-up" className="border-[1px] hover:shadow-xl">
+            <figure>
+              <img className="mx-auto" src={chef2} />
+            </figure>
+            <div className="p-3">
+              <p className="text-center text-[#292929]">Sofia Mayer </p>
+              <p className="text-center text-[#5d5d5d] uppercase mt-2 mb-3 text-xs">
+                Chef
+              </p>
+              <p className="text-center text-[#989898]">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusa ntium doloremque.
+              </p>
+              <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
+                <FaFacebookF />
+                <FaTwitter />
+                <FaInstagram />
+                <FaLinkedin />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="">
-          <figure>
-            <img src={chef3} />
-          </figure>
-          <div className="p-3">
-            <p className="text-center text-[#292929]">Sofia Mayer </p>
-            <p className="text-center text-[#5d5d5d] uppercase mt-2 mb-3 text-xs">
-              Chef
-            </p>
-            <p className="text-center text-[#989898]">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusa ntium doloremque.
-            </p>
-            <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
-              <FaFacebookF />
-              <FaTwitter />
-              <FaInstagram />
-              <FaLinkedin />
+          <div data-aos="zoom-out-up" className="border-[1px] hover:shadow-xl">
+            <figure>
+              <img className="mx-auto" src={chef3} />
+            </figure>
+            <div className="p-3">
+              <p className="text-center text-[#292929]">Sofia Mayer </p>
+              <p className="text-center text-[#5d5d5d] uppercase mt-2 mb-3 text-xs">
+                Chef
+              </p>
+              <p className="text-center text-[#989898]">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusa ntium doloremque.
+              </p>
+              <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
+                <FaFacebookF />
+                <FaTwitter />
+                <FaInstagram />
+                <FaLinkedin />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="">
-          <figure>
-            <img src={chef4} />
-          </figure>
-          <div className="p-3">
-            <p className="text-center text-[#292929]">Sofia Mayer </p>
-            <p className="text-center text-[#5d5d5d] uppercase mt-2 mb-3 text-xs">
-              Chef
-            </p>
-            <p className="text-center text-[#989898]">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusa ntium doloremque.
-            </p>
-            <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
-              <FaFacebookF />
-              <FaTwitter />
-              <FaInstagram />
-              <FaLinkedin />
+          <div data-aos="zoom-out-up" className="border-[1px] hover:shadow-xl">
+            <figure>
+              <img className="mx-auto" src={chef4} />
+            </figure>
+            <div className="p-3">
+              <p className="text-center text-[#292929]">Sofia Mayer </p>
+              <p className="text-center text-[#5d5d5d] uppercase mt-2 mb-3 text-xs">
+                Chef
+              </p>
+              <p className="text-center text-[#989898]">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusa ntium doloremque.
+              </p>
+              <div className="card-actions text-[#ffa41f] gap-2 text-lg mt-4 justify-center">
+                <FaFacebookF />
+                <FaTwitter />
+                <FaInstagram />
+                <FaLinkedin />
+              </div>
             </div>
           </div>
         </div>

@@ -1,8 +1,8 @@
-# React + Vite
+# Website_name: restaurant_management
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## This website has five features
+* User can see all the food and can filter his choice
+* Users can add food if they want
+* He can see his own edited flowers and can delete and edit
+* User can buy food
+* The user can delete the ordered food if he wants

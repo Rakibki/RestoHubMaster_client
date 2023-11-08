@@ -6,7 +6,7 @@ import img4 from "../../assets/images/4.jpg";
 
 const Gallery = () => {
   return (
-    <div className="grid gap-2 my-10 overflow-hidden grid-cols-4">
+    <div data-aos="zoom-in" className="grid gap-2 my-10 mt-32 overflow-hidden grid-cols-2 md:grid-cols-4">
       <div className="overflow-hidden">
         <img className="hover:scale-125 transition-all overflow-hidden" src={img1} alt="" />
       </div>
