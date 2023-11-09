@@ -23,7 +23,7 @@ const Add_food = () => {
     };
 
     axios
-      .post("http://localhost:5000/add_food_item", food_info)
+      .post("https://server-omega-ten-11.vercel.app/add_food_item", food_info)
       .then((res) => {
         console.log(res.data);
         new swal("Good..", "Food added successfully", "success");

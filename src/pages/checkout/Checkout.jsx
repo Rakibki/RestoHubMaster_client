@@ -34,7 +34,7 @@ const Checkout = () => {
         );
       } else {
         axios
-          .post(`http://localhost:5000/All_oder/${food._id}`, oderinfo)
+          .post(`https://server-omega-ten-11.vercel.app/All_oder/${food._id}`, oderinfo)
           .then((res) => {
             console.log(res.data);
             swal("Good job!", "Order placed successfully", "success");

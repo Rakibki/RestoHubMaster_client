@@ -6,14 +6,15 @@ import { Link } from "react-router-dom";
 
 const Top_food = () => {
   const { isPending, error, data } = useQuery({
-    queryKey: ["repoData"],
+    queryKey: ["top_food_item"],
     queryFn: () =>
-      fetch("http://localhost:5000/Top_Food").then((res) => res.json()),
+      fetch("https://server-omega-ten-11.vercel.app/Top_Food").then((res) => res.json()),
   });
 
   if (isPending) {
     return <Loadding />;
   }
+
 
   return (
     <div className="w-full mt-14 px-16 md:px-24">

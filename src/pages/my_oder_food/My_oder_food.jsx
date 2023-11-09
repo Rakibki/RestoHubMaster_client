@@ -24,7 +24,7 @@ const My_oder_food = () => {
   const { isPending, error, data, refetch } = useQuery({
     queryKey: ["repoData", "ders"],
     queryFn: () =>
-      axios.get(`http://localhost:5000/my_oder_food?email=${user?.email}`, {
+      axios.get(`https://server-omega-ten-11.vercel.app/my_oder_food?email=${user?.email}`, {
         withCredentials: true,
       }),
   });
@@ -44,7 +44,7 @@ const My_oder_food = () => {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`http://localhost:5000/my_Oder_food_delete/${id}`)
+          .delete(`https://server-omega-ten-11.vercel.app/my_Oder_food_delete/${id}`)
           .then((res) => {
             refetch();
           });

@@ -58,7 +58,7 @@ const AuthProvaider = ({ children }) => {
 
       if (user) {
         axios
-          .post(`http://localhost:5000/jwt`, {email: logginUser}, { withCredentials: true })
+          .post(`https://server-omega-ten-11.vercel.app/jwt`, {email: logginUser}, { withCredentials: true })
           .then((res) => console.log(res))
           .catch((e) => console.log(e));
       }

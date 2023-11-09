@@ -15,7 +15,7 @@ const All_food = () => {
   const [priceSotting, setPriceSotting] = useState({ max: "", min: "" });
 
   useEffect(() => {
-    fetch("http://localhost:5000/all_foods_lenth")
+    fetch("https://server-omega-ten-11.vercel.app/all_foods_lenth")
       .then((res) => res.json())
       .then((data) => setTotalFood(data.result));
   }, []);
@@ -27,7 +27,7 @@ const All_food = () => {
     queryKey: ["repoData", curentPage, itemPerPage, sort],
     queryFn: () =>
       fetch(
-        `http://localhost:5000/all_foods?size=${itemPerPage}&page=${curentPage}&sort=${sort}&searchValue=${searchValue}&minValue=${priceSotting.min}&maxvalue=${priceSotting.max}`
+        `https://server-omega-ten-11.vercel.app/all_foods?size=${itemPerPage}&page=${curentPage}&sort=${sort}&searchValue=${searchValue}&minValue=${priceSotting.min}&maxvalue=${priceSotting.max}`
       ).then((res) => res.json()),
   });
 

@@ -15,7 +15,7 @@ const My_added_food = () => {
     queryKey: ["repoData", "my-added-food"],
     queryFn: () =>
       axios
-        .get(`http://localhost:5000/my_added_food?email=${user?.email}`, {withCredentials: true})
+        .get(`https://server-omega-ten-11.vercel.app/my_added_food?email=${user?.email}`, {withCredentials: true})
         // .then((res) => res.json()),
   });
 
@@ -35,7 +35,7 @@ console.log(data);
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`http://localhost:5000/my_food_delete/${id}`)
+          .delete(`https://server-omega-ten-11.vercel.app/my_food_delete/${id}`)
           .then((res) => {
             console.log(res);
             refetch();

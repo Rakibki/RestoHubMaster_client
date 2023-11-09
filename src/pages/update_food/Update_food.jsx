@@ -19,7 +19,7 @@ const Update_food = () => {
     };
 
     axios
-      .put(`http://localhost:5000/my_food_update/${food._id}`, food_info)
+      .put(`https://server-omega-ten-11.vercel.app/my_food_update/${food._id}`, food_info)
       .then((res) => {
         console.log(res);
         swal("Good job!", "Successfully updated food!", "success");

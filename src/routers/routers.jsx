@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         path: "/food_details/:id",
         element: <FoodDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product_details/${params.id}`),
+          fetch(`https://server-omega-ten-11.vercel.app/product_details/${params.id}`),
       },
       {
         path: "/checkout/:id",
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product_details/${params.id}`),
+          fetch(`https://server-omega-ten-11.vercel.app/product_details/${params.id}`),
       },
       {
         path: "/add_food",
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
         path: "/update/:id",
         element: <Update_food />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product_details/${params.id}`),
+          fetch(`https://server-omega-ten-11.vercel.app/product_details/${params.id}`),
       },
     ],
   },
