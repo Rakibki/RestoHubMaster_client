@@ -127,6 +127,13 @@ const Navber = ({ children }) => {
                     </Link>
 
                     <Link
+                      to={"/MyBookTable"}
+                      className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
+                    >
+                      <p>My Table Book History</p>
+                    </Link>
+
+                    <Link
                       to={"/my_added_food"}
                       className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
                     >

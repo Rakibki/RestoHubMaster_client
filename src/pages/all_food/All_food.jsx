@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loadiing from "../../shared/Loadiing";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Helmet } from "react-helmet";
+import useAxios from "../../hooks/useAxios";
 
 const All_food = () => {
   const [totalFood, setTotalFood] = useState(null);
@@ -13,22 +14,26 @@ const All_food = () => {
   const [sort, setSort] = useState("desc");
   const [searchValue, setSearchValue] = useState("");
   const [priceSotting, setPriceSotting] = useState({ max: "", min: "" });
+  const Axios = useAxios();
 
   useEffect(() => {
-    fetch("https://server-omega-ten-11.vercel.app/all_foods_lenth")
-      .then((res) => res.json())
-      .then((data) => setTotalFood(data.result));
-  }, []);
+    Axios.get("/all_foods_lenth")
+    .then((res) => {
+      setTotalFood(res?.data?.result)
+    })
+  },)
+
   const [itemPerPage, setItemPerPage] = useState(9);
   const pages = Math.ceil(totalFood / itemPerPage);
   const pagination = [...new Array(pages).keys()];
 
-  const { isPending, error, data, refetch } = useQuery({
+  const { isPending, data, refetch } = useQuery({
     queryKey: ["repoData", curentPage, itemPerPage, sort],
-    queryFn: () =>
-      fetch(
-        `https://server-omega-ten-11.vercel.app/all_foods?size=${itemPerPage}&page=${curentPage}&sort=${sort}&searchValue=${searchValue}&minValue=${priceSotting.min}&maxvalue=${priceSotting.max}`
-      ).then((res) => res.json()),
+    queryFn: async () => {
+      const res = await Axios.get(`/all_foods?size=${itemPerPage}&page=${curentPage}&sort=${sort}&searchValue=${searchValue}&minValue=${priceSotting.min}&maxvalue=${priceSotting.max}`
+      );
+      return res?.data
+    },
   });
 
   const handlePreveus = () => {
@@ -67,13 +72,13 @@ const All_food = () => {
   const handlePriceSort = (e) => {
     setPriceSotting({
       ...priceSotting,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handlePriceFilter = () => {
-    refetch()
-  }
+    refetch();
+  };
 
   return (
     <div>
@@ -139,7 +144,7 @@ const All_food = () => {
               <div className="flex border-[1px] items-center">
                 <h2>$</h2>
                 <input
-                name="min"
+                  name="min"
                   onChange={handlePriceSort}
                   type="number"
                   className=" outline-none p-1"
@@ -159,14 +164,16 @@ const All_food = () => {
               </div>
             </div>
             <div>
-              <button onClick={handlePriceFilter} className="px-6 py-2 w-full rounded-lg mt-2 hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white">
+              <button
+                onClick={handlePriceFilter}
+                className="px-6 py-2 w-full rounded-lg mt-2 hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white"
+              >
                 Filter
               </button>
             </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 col-span-3">
-            {data &&
-              data?.map((food) => <SingleFood key={food._id} food={food} />)}
+          <div className="grid z-20 md:grid-cols-2 lg:grid-cols-3 gap-3 col-span-3">
+              {data.length > 0 && data?.map((food) => <SingleFood key={food._id} food={food} />)}
           </div>
         </div>
       </div>
