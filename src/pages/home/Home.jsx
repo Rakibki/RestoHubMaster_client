@@ -1,5 +1,3 @@
-import React, { useContext } from "react";
-import { authContext } from "../../providers/AuthProvaider";
 import Banner from "./Banner";
 import Chefs from "./Chefs_Section";
 import Gallery from "../Gallery/Gallery";
@@ -9,8 +7,9 @@ import Top_food from "./Top_food";
 import {Helmet} from "react-helmet"
 import Reservation from "./Reservation";
 
-const Home = () => {
 
+
+const Home = () => {
   return (
     <div>
       <Helmet>

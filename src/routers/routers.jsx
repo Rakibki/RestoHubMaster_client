@@ -14,6 +14,7 @@ import My_added_food from "../pages/my_added_food/My_added_food";
 import My_oder_food from "../pages/my_oder_food/My_oder_food";
 import Update_food from "../pages/update_food/Update_food";
 import MyBookTable from "../pages/myBookTable/MyBookTable";
+import Subscribers from "../pages/home/subscribers";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "MyBookTable",
         element: <MyBookTable />,
+      },
+      {
+        path: "subscribers",
+        element: <Subscribers  />,
       },
       {
         path: "/update/:id",
