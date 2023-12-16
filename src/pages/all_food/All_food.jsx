@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loadiing from "../../shared/Loadiing";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Helmet } from "react-helmet";
-import useAxios from "../../hooks/useAxios";
+import useAxiosLocal from "../../hooks/useAxiosLocal";
 
 const All_food = () => {
   const [totalFood, setTotalFood] = useState(null);
@@ -13,10 +13,10 @@ const All_food = () => {
   const [sort, setSort] = useState("desc");
   const [searchValue, setSearchValue] = useState("");
   const [priceSotting, setPriceSotting] = useState({ max: "", min: "" });
-  const Axios = useAxios();
+  const axiosLocal = useAxiosLocal();
 
   useEffect(() => {
-    Axios.get("/all_foods_lenth")
+    axiosLocal.get("/all_foods_lenth")
     .then((res) => {
       setTotalFood(res?.data?.result)
     })
@@ -29,7 +29,7 @@ const All_food = () => {
   const { isPending, data, refetch } = useQuery({
     queryKey: ["repoData", curentPage, itemPerPage, sort],
     queryFn: async () => {
-      const res = await Axios.get(`/all_foods?size=${itemPerPage}&page=${curentPage}&sort=${sort}&searchValue=${searchValue}&minValue=${priceSotting.min}&maxvalue=${priceSotting.max}`
+      const res = await axiosLocal.get(`/all_foods?size=${itemPerPage}&page=${curentPage}&sort=${sort}&searchValue=${searchValue}&minValue=${priceSotting.min}&maxvalue=${priceSotting.max}`
       );
       return res?.data
     },

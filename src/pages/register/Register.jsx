@@ -10,12 +10,14 @@ import { FaFacebookF } from "react-icons/fa";
 import { AiOutlineGoogle, AiFillGithub } from "react-icons/ai";
 import loginimg from "../../assets/images/login.jpg";
 import swal from "sweetalert2";
-import axios from "axios";
+import useAxiosLocal from "../../hooks/useAxiosLocal";
+import UploadeImage from "../../hooks/UploadeImage";
 
 const Register = () => {
   const { createUser, loginWithGoogle, loginWithGithub } =
     useContext(authContext);
   const [error, setError] = useState("");
+  const axiosLocal = useAxiosLocal();
 
   const handleFacebook = () => {
     // alert("facebook");
@@ -37,14 +39,16 @@ const Register = () => {
       .catch((e) => console.log(e));
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
 
     const name = e.target.name.value;
-    const photo = e.target.photo.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
+    const role = e.target.role.value;
+    const photo = e.target.image.files[0];
+    const image = await UploadeImage(photo);
 
     if (password.length < 6) {
       return setError("It should be at least 6 characters long.");
@@ -63,20 +67,18 @@ const Register = () => {
     }
 
     createUser(email, password)
-      .then((res) => {
-        console.log("create User");
-
+      .then(() => {
         updateProfile(auth.currentUser, {
           displayName: name,
-          photoURL: photo,
+          photoURL: image,
         });
-
-        axios.post("http://localhost:5000/users", {
-          name,
-          email,
-          photo,
-          password,
-        });
+        axiosLocal.post("/users", {
+          name: name,
+          email: email,
+          role: role,
+          image: image,
+        })
+        .then((res) => console.log(res))
       })
       .catch((e) => {
         console.log(e.message);
@@ -144,20 +146,10 @@ const Register = () => {
             <div className="form-control">
               <input
                 type="email"
-                placeholder="email"
+                placeholder="email*"
                 className="input rounded-none input-bordered"
                 required
                 name="email"
-              />
-            </div>
-
-            <div className="form-control">
-              <input
-                type="text"
-                placeholder="Photo"
-                className="input rounded-none input-bordered"
-                required
-                name="photo"
               />
             </div>
 
@@ -169,11 +161,33 @@ const Register = () => {
                 required
                 name="password"
               />
-              <p className="text-sm nt-2 text-red-700">{error}</p>
+
+              <div className="mt-3 w-[100%]">
+                <select
+                  className="input w-full rounded-none input-bordered"
+                  name="role"
+                >
+                  <option value="user">User</option>
+                  <option value="deliveryMan">Delivery Man</option>
+                </select>
+              </div>
+
+              <div className="flex mt-3 gap-2 flex-cols-2">
+                <div className="w-[50%]">
+                  <input
+                    name="image"
+                    type="file"
+                    placeholder="password"
+                    required
+                  />
+                </div>
+              </div>
+
+              <p className="text-sm mt-6 text-red-700">{error}</p>
               <div className="flex items-center justify-between">
                 <button
                   type="submit"
-                  className="px-5 py-2 mt-4 bg-[#ffa41f] transition-all  text-white font-bold hover:opacity-80"
+                  className="px-5 py-2 mt-2 bg-[#ffa41f] transition-all  text-white font-bold hover:opacity-80"
                 >
                   Register
                 </button>

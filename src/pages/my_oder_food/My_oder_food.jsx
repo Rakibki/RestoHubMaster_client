@@ -6,16 +6,16 @@ import Single_Oder_Row from "./Single_Oder_Row";
 import { authContext } from "../../providers/AuthProvaider";
 import swal from "sweetalert";
 import { Helmet } from "react-helmet";
-import useAxios from "../../hooks/useAxios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const My_oder_food = () => {
   const { user } = useContext(authContext);
-  const Axios = useAxios();
+  const axiosSecure = useAxiosSecure()
 
   const { isPending, data, refetch } = useQuery({
     queryKey: ["repoData", "ders", user],
     queryFn: async () => {
-      const res = await Axios.get(`/my_oder_food?email=${user?.email}`)
+      const res = await axiosSecure.get(`/my_oder_food?email=${user?.email}`)
       return res
     }
   });
@@ -35,7 +35,7 @@ const My_oder_food = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        Axios.delete(`/my_Oder_food_delete/${id}`).then((res) => {
+        axiosSecure.delete(`/my_Oder_food_delete/${id}`).then((res) => {
           refetch();
         });
         swal("Poof! Your imaginary file has been deleted!", {

@@ -16,6 +16,7 @@ import Update_food from "../pages/update_food/Update_food";
 import MyBookTable from "../pages/myBookTable/MyBookTable";
 import Subscribers from "../pages/home/subscribers";
 import ViewCard from "../pages/viewCard/ViewCard";
+import DashboardLayout from "../layout/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,17 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "myCard",
+        element: <ViewCard />
+      }
+    ]
+  }
 ]);
 
 export default router;

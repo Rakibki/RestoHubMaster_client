@@ -69,7 +69,6 @@ const Navber = ({ children }) => {
   };
 
   const {
-    isPending,
     data: myCardLength,
     refetch,
   } = useQuery({
@@ -81,9 +80,7 @@ const Navber = ({ children }) => {
     },
   });
 
-  if (isPending) {
-    return <Loadiing />;
-  }
+
 
   return (
     <Container>
@@ -146,7 +143,7 @@ const Navber = ({ children }) => {
                   <div>
                     <div
                       onClick={() => setOpenCard(!openCard)}
-                      className="relative cursor-pointer"
+                      className="relative ml-4 cursor-pointer"
                     >
                       <FiShoppingCart className="text-2xl" />
                       <div className="badge bg-[#ffa41f] border-[#ffa41f] text-white font-semibold absolute -top-3 left-3 badge-secondary">

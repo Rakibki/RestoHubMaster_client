@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -9,16 +9,14 @@ import {
   signOut,
 } from "firebase/auth";
 import auth from "../firebase/firebase.confic";
-import axios from "axios";
+import useAxiosLocal from "../hooks/useAxiosLocal";
 
 export const authContext = createContext(null);
 
-
-const AuthProvaider = ({ children }) => {
+const AuthProvaider = ({children}) => {
   const [user, setUser] = useState(null);
   const [loadding, setLoadding] = useState(true);
-
-
+  const axiosSecure = useAxiosLocal();
 
   const createUser = (email, password) => {
     setLoadding(true);
@@ -47,19 +45,25 @@ const AuthProvaider = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
 
-
   useEffect(() => {
     const disConnect = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoadding(false);
 
-      const logginUser = user.email || currentUser.email
+      const logginUser = user?.email || currentUser?.email;
 
       if (user) {
-        axios
-          .post(`https://server-omega-ten-11.vercel.app/jwt`, {email: logginUser}, { withCredentials: true })
-          .then((res) => console.log(res))
-          .catch((e) => console.log(e));
+        axiosSecure.post('users', {
+          name: user?.displayName || currentUser?.displayName ,
+          email: user?.email || currentUser.email || logginUser,
+          role: "user",
+          image: user?.photoURL || currentUser.photoURL,
+        })
+        axiosSecure.post(
+          `/jwt`,
+          { email: logginUser },
+          { withCredentials: true }
+        );
       }
 
       return () => {
@@ -67,7 +71,6 @@ const AuthProvaider = ({ children }) => {
       };
     });
   }, [user]);
-
 
   const userInfo = {
     user,

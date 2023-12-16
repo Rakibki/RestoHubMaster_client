@@ -1,22 +1,21 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { authContext } from "../../providers/AuthProvaider";
 import Loadding from "../../shared/Loadiing";
 import { useQuery } from "@tanstack/react-query";
 import Page_title from "../../shared/page_title/Page_title";
 import Single_food_item from "./Single_food_item";
-import axios from "axios";
 import swal from "sweetalert";
 import { Helmet } from "react-helmet";
-import useAxios from "../../hooks/useAxios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const My_added_food = () => {
   const { user } = useContext(authContext);
-  const Axios = useAxios();
+  const axiosSecure = useAxiosSecure()
 
   const { isPending, error, data, refetch } = useQuery({
     queryKey: ["repoData", "my-added-food"],
     queryFn: async () => {
-      const res = await Axios.get(`/my_added_food?email=${user?.email}`)
+      const res = await axiosSecure.get(`/my_added_food?email=${user?.email}`)
       return res
     }
   });

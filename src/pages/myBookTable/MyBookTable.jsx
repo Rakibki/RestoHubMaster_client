@@ -1,20 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "../../hooks/useAxios";
 import { useContext } from "react";
 import { authContext } from "../../providers/AuthProvaider";
 import Loadiing from "../../shared/Loadiing";
-import Single_Oder_Row from "../my_oder_food/Single_Oder_Row";
 import { AiOutlineClose } from "react-icons/ai";
 import Page_title from "../../shared/page_title/Page_title";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyBookTable = () => {
-  const Axios = useAxios();
   const { user } = useContext(authContext);
+  const axiosSecure = useAxiosSecure()
 
   const { isPending, data, refetch } = useQuery({
     queryKey: ["myBookTable"],
     queryFn: async () => {
-      const res = await Axios.get(`/myBookTable/${user?.email}`);
+      const res = await axiosSecure.get(`/myBookTable/${user?.email}`);
       return res?.data;
     },
   });

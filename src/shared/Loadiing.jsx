@@ -1,4 +1,3 @@
-import React from 'react'
 import loaadding_animarion from "../assets/loadding1.json" 
 import { useLottie } from "lottie-react";
 

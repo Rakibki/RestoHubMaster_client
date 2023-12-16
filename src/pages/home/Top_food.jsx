@@ -3,14 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import Loadding from "../../shared/Loadiing";
 import Single_food from "../all_food/SingleFood";
 import { Link } from "react-router-dom";
-import useAxios from "../../hooks/useAxios";
+import useAxiosLocal from "../../hooks/useAxiosLocal";
+// import useAxios from "../../hooks/useAxios";
 
 const Top_food = () => {
-  const Axios = useAxios()
+  // const Axios = useAxios()
+  const axioslocal = useAxiosLocal()
   const { isPending, data } = useQuery({
     queryKey: ["top_food_item"],
     queryFn: async () => {
-      const res = await Axios.get("/Top_Food")
+      const res = await axioslocal.get("/Top_Food")
       return res?.data
     }
   });

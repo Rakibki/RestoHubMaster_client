@@ -8,7 +8,6 @@ import {Helmet} from "react-helmet"
 import Reservation from "./Reservation";
 
 
-
 const Home = () => {
   return (
     <div>
