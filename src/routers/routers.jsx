@@ -18,6 +18,10 @@ import Subscribers from "../pages/home/subscribers";
 import ViewCard from "../pages/viewCard/ViewCard";
 import DashboardLayout from "../layout/DashboardLayout";
 import All_food_items from "../pages/bashboard/adminDashboard/all_food_items/All_food_items";
+import Customer from "../pages/bashboard/adminDashboard/customar/Customer";
+import useAxiosLocal from "../hooks/useAxiosLocal";
+
+const axiosLocal = useAxiosLocal();
 
 const router = createBrowserRouter([
   {
@@ -48,10 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/food_details/:id",
         element: <FoodDetails />,
-        loader: ({ params }) =>
-          fetch(
-            `https://server-omega-ten-11.vercel.app/product_details/${params.id}`
-          ),
+        loader: async ({ params }) => {
+          const res = await axiosLocal(`/product_details/${params.id}`);
+          return res?.data;
+        },
       },
       {
         path: "/checkout/:id",
@@ -92,6 +96,14 @@ const router = createBrowserRouter([
       {
         path: "MyBookTable",
         element: <MyBookTable />,
+      },
+      {
+        path: "MyBookTable",
+        element: <MyBookTable />,
+      },
+      {
+        path: "customers",
+        element: <Customer />,
       },
       {
         path: "subscribers",

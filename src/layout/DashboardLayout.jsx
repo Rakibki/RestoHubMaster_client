@@ -56,6 +56,12 @@ const DashboardLayout = () => {
           >
             <p>Foods</p>
           </Link>
+          <Link
+            to={"customers"}
+            className=" mb-3 transition-all text-[#ffa41f]  "
+          >
+            <p>Customers</p>
+          </Link>
         </div>
       </div>
       <div className="col-span-10 border-2">
