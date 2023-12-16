@@ -1,11 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import Container from "../../shared/Container/Container";
 import logo from "../../assets/images/logo.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { authContext } from "../../providers/AuthProvaider";
+import Dropwoun from "./Dropwoun";
+import { FiShoppingCart } from "react-icons/fi";
+import { IoCloseOutline } from "react-icons/io5";
+import MyCard from "./MyCard";
+
+import { useQuery } from "@tanstack/react-query";
+import Loadiing from "../../shared/Loadiing";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Navber = ({ children }) => {
   const { user, logOut } = useContext(authContext);
+  const [openCard, setOpenCard] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   const navitems = (
     <>
@@ -55,12 +65,25 @@ const Navber = ({ children }) => {
   );
 
   const handleLogOut = () => {
-    logOut()
-      .then((res) => {
-        console.log("Logi n out");
-      })
-      .catch((e) => console.log(e));
+    logOut();
   };
+
+  const {
+    isPending,
+    data: myCardLength,
+    refetch,
+  } = useQuery({
+    queryKey: ["myCardLength"],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/myCardLength/${user?.email}`);
+      return res?.data?.result;
+    },
+  });
+
+  if (isPending) {
+    return <Loadiing />;
+  }
 
   return (
     <Container>
@@ -116,52 +139,41 @@ const Navber = ({ children }) => {
                       />
                     </div>
                   </label>
-                  <ul
-                    tabIndex={0}
-                    className="dropdown-content z-[1] menu bg-black bg-opacity-60 p-6 shadow rounded-box w-72"
-                  >
-                    {/* container */}
-                    <Link
-                      to={"/add_food"}
-                      className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
+                  <Dropwoun handleLogOut={handleLogOut} />
+                </div>
+                <div>
+                  {/* card */}
+                  <div>
+                    <div
+                      onClick={() => setOpenCard(!openCard)}
+                      className="relative cursor-pointer"
                     >
-                      <p>Add Food Item</p>
-                    </Link>
+                      <FiShoppingCart className="text-2xl" />
+                      <div className="badge bg-[#ffa41f] border-[#ffa41f] text-white font-semibold absolute -top-3 left-3 badge-secondary">
+                        {myCardLength}
+                      </div>
+                    </div>
+                    {/* toogle */}
+                    <div
+                      className={`z-[1] menu bg-black bg-opacity-60 shadow rounded-box absolute duration-500 transition-all w-[380px] right-4 px-6 py-10 top-20 ${
+                        openCard ? "mr-0" : "-mr-[1000px]"
+                      }`}
+                    >
+                      <div className="flex mb-2 items-center justify-between">
+                        <h1 className="text-xl">Shoping Cart</h1>
+                        <h1>
+                          <IoCloseOutline
+                            onClick={() => setOpenCard(false)}
+                            className="text-3xl cursor-pointer "
+                          />
+                        </h1>
+                      </div>
+                      <hr />
 
-                    <Link
-                      to={"/MyBookTable"}
-                      className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
-                    >
-                      <p>My Table Book History</p>
-                    </Link>
-
-                    <Link
-                      to={"/subscribers "}
-                      className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
-                    >
-                      <p>Subscribers</p>
-                    </Link>
-
-                    <Link
-                      to={"/my_added_food"}
-                      className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
-                    >
-                      <p>My Added Food</p>
-                    </Link>
-
-                    <Link
-                      to={"my_oder_food"}
-                      className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
-                    >
-                      <p>My Oder Food</p>
-                    </Link>
-                    <button
-                      onClick={handleLogOut}
-                      className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white"
-                    >
-                      Log out
-                    </button>
-                  </ul>
+                      {/* body */}
+                      <MyCard setOpenCard={setOpenCard} />
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : (

@@ -7,17 +7,20 @@ import Single_food_item from "./Single_food_item";
 import axios from "axios";
 import swal from "sweetalert";
 import { Helmet } from "react-helmet";
+import useAxios from "../../hooks/useAxios";
 
 const My_added_food = () => {
   const { user } = useContext(authContext);
+  const Axios = useAxios();
 
   const { isPending, error, data, refetch } = useQuery({
     queryKey: ["repoData", "my-added-food"],
-    queryFn: () =>
-      axios
-        .get(`https://server-omega-ten-11.vercel.app/my_added_food?email=${user?.email}`, {withCredentials: true})
-        // .then((res) => res.json()),
+    queryFn: async () => {
+      const res = await Axios.get(`/my_added_food?email=${user?.email}`)
+      return res
+    }
   });
+
 
 console.log(data);
 

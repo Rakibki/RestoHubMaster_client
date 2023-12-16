@@ -15,6 +15,7 @@ import My_oder_food from "../pages/my_oder_food/My_oder_food";
 import Update_food from "../pages/update_food/Update_food";
 import MyBookTable from "../pages/myBookTable/MyBookTable";
 import Subscribers from "../pages/home/subscribers";
+import ViewCard from "../pages/viewCard/ViewCard";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: "subscribers",
         element: <Subscribers  />,
+      },
+      {
+        path: "myCard",
+        element: <ViewCard  />,
       },
       {
         path: "/update/:id",

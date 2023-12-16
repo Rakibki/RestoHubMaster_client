@@ -8,7 +8,7 @@ const Single_Oder_Row = ({ food, handleDeleteFood }) => {
         <div className="flex items-center space-x-3">
           <div className="avatar">
             <div className="mask w-[150px] h-[150px]">
-              <img src={food?.image_URL} alt="Avatar Tailwind CSS Component" />
+              <img src={food?.image} alt="Avatar Tailwind CSS Component" />
             </div>
           </div>
         </div>
@@ -17,7 +17,7 @@ const Single_Oder_Row = ({ food, handleDeleteFood }) => {
         <h2 className="text-base">{food?.Food_name}</h2>
       </td>
       <td>
-        <h2 className="text-xl font-semibold">${food?.Price}</h2>
+        <h2 className="text-xl font-semibold">${food?.Regual_Price}</h2>
       </td>
       <th>
         <button

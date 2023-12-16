@@ -15,7 +15,6 @@ const Top_food = () => {
     }
   });
 
-
   if (isPending) {
     return <Loadding />;
   }

@@ -1,34 +1,26 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Loadding from "../../shared/Loadiing";
 import Page_title from "../../shared/page_title/Page_title";
 import Single_Oder_Row from "./Single_Oder_Row";
 import { authContext } from "../../providers/AuthProvaider";
-import axios from "axios";
 import swal from "sweetalert";
 import { Helmet } from "react-helmet";
+import useAxios from "../../hooks/useAxios";
 
 const My_oder_food = () => {
   const { user } = useContext(authContext);
+  const Axios = useAxios();
 
-  // const { isPending, error, data, refetch } = useQuery({
-  //   queryKey: ["repoData", "ders"],
-  //   queryFn: () =>
-  //     axios
-  //       .get(`http://localhost:5000/my_oder_food?email=${user?.email}`, {
-  //         withCredentials: true,
-  //       })
-  //       .then((res) => res.json()),
-  // });
-
-  const { isPending, error, data, refetch } = useQuery({
-    queryKey: ["repoData", "ders"],
-    queryFn: () =>
-      axios.get(`https://server-omega-ten-11.vercel.app/my_oder_food?email=${user?.email}`, {
-        withCredentials: true,
-      }),
+  const { isPending, data, refetch } = useQuery({
+    queryKey: ["repoData", "ders", user],
+    queryFn: async () => {
+      const res = await Axios.get(`/my_oder_food?email=${user?.email}`)
+      return res
+    }
   });
 
+  console.log(data);
 
   if (isPending) {
     return <Loadding />;
@@ -43,11 +35,9 @@ const My_oder_food = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        axios
-          .delete(`https://server-omega-ten-11.vercel.app/my_Oder_food_delete/${id}`)
-          .then((res) => {
-            refetch();
-          });
+        Axios.delete(`/my_Oder_food_delete/${id}`).then((res) => {
+          refetch();
+        });
         swal("Poof! Your imaginary file has been deleted!", {
           icon: "success",
         });
@@ -64,11 +54,13 @@ const My_oder_food = () => {
         <title>My Oder Food</title>
       </Helmet>
 
-      {data.data.length < 1 ? (
+      {data?.data?.length < 1 ? (
         <p className="text-3xl font-semibold text-center text-[#ffa41f] my-6">
           You have no orders
         </p>
-      ) : ""}
+      ) : (
+        ""
+      )}
 
       {data.data.length > 0 && (
         <div className="mt-10 p-16">
