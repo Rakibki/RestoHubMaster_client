@@ -17,6 +17,7 @@ import MyBookTable from "../pages/myBookTable/MyBookTable";
 import Subscribers from "../pages/home/subscribers";
 import ViewCard from "../pages/viewCard/ViewCard";
 import DashboardLayout from "../layout/DashboardLayout";
+import All_food_items from "../pages/bashboard/adminDashboard/all_food_items/All_food_items";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,9 @@ const router = createBrowserRouter([
         path: "/food_details/:id",
         element: <FoodDetails />,
         loader: ({ params }) =>
-          fetch(`https://server-omega-ten-11.vercel.app/product_details/${params.id}`),
+          fetch(
+            `https://server-omega-ten-11.vercel.app/product_details/${params.id}`
+          ),
       },
       {
         path: "/checkout/:id",
@@ -59,15 +62,44 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://server-omega-ten-11.vercel.app/product_details/${params.id}`),
+          fetch(
+            `https://server-omega-ten-11.vercel.app/product_details/${params.id}`
+          ),
+      },
+    ],
+  },
+
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "myCard",
+        element: <ViewCard />,
       },
       {
-        path: "/add_food",
+        path: "my_oder_food",
+        element: <My_oder_food />,
+      },
+      {
+        path: "add_food",
         element: (
           <PrivateRoute>
             <Add_food />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "MyBookTable",
+        element: <MyBookTable />,
+      },
+      {
+        path: "subscribers",
+        element: <Subscribers />,
+      },
+      {
+        path: "all_foods",
+        element: <All_food_items />,
       },
       {
         path: "my_added_food",
@@ -79,40 +111,15 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "my_oder_food",
-        element: <My_oder_food />,
-      },
-      {
-        path: "MyBookTable",
-        element: <MyBookTable />,
-      },
-      {
-        path: "subscribers",
-        element: <Subscribers  />,
-      },
-      {
-        path: "myCard",
-        element: <ViewCard  />,
-      },
-      {
-        path: "/update/:id",
+        path: "update/:id",
         element: <Update_food />,
         loader: ({ params }) =>
-          fetch(`https://server-omega-ten-11.vercel.app/product_details/${params.id}`),
+          fetch(
+            `https://server-omega-ten-11.vercel.app/product_details/${params.id}`
+          ),
       },
     ],
   },
-
-  {
-    path: "/dashboard",
-    element: <DashboardLayout />,
-    children: [
-      {
-        path: "myCard",
-        element: <ViewCard />
-      }
-    ]
-  }
 ]);
 
 export default router;

@@ -10,14 +10,14 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const My_oder_food = () => {
   const { user } = useContext(authContext);
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
 
   const { isPending, data, refetch } = useQuery({
     queryKey: ["repoData", "ders", user],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/my_oder_food?email=${user?.email}`)
-      return res
-    }
+      const res = await axiosSecure.get(`/my_oder_food?email=${user?.email}`);
+      return res;
+    },
   });
 
   console.log(data);

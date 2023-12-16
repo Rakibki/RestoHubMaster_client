@@ -16,49 +16,7 @@ const Dropwoun = ({ handleLogOut }) => {
           <p>Dashboard</p>
         </Link>
 
-        {/* container */}
-        {/* <Link
-          to={"/add_food"}
-          className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
-        >
-          <p>Add Food Item</p>
-        </Link> */}
 
-        {/* <Link
-          to={"/MyBookTable"}
-          className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
-        >
-          <p>My Table Book History</p>
-        </Link> */}
-        
-        {/* 
-        <Link
-          to={"/myCard"}
-          className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
-        >
-          <p>View Card</p>
-        </Link> */}
-
-        {/* <Link
-          to={"/subscribers "}
-          className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
-        >
-          <p>Subscribers</p>
-        </Link> */}
-
-        {/* <Link
-          to={"/my_added_food"}
-          className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
-        >
-          <p>My Added Food</p>
-        </Link> */}
-
-        {/* <Link
-          to={"my_oder_food"}
-          className=" mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
-        >
-          <p>My Oder Food</p>
-        </Link> */}
 
         <button
           onClick={handleLogOut}
