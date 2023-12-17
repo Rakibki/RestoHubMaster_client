@@ -4,13 +4,12 @@ import Page_title from "../../shared/page_title/Page_title";
 import { Rate } from "antd";
 import { authContext } from "../../providers/AuthProvaider";
 import useAxiosLocal from "../../hooks/useAxiosLocal";
-import Swal from "sweetalert2"
-
+import Swal from "sweetalert2";
 
 const FoodDetails = () => {
   const food = useLoaderData();
   const [count, setCount] = useState(0);
-  const {user} = useContext(authContext)
+  const { user } = useContext(authContext);
   const axiosLocal = useAxiosLocal();
 
   const handleAddToCard = async () => {
@@ -30,7 +29,17 @@ const FoodDetails = () => {
         text: "Card added successfully",
       });
     }
-  }
+  };
+
+  console.log(food);
+
+  const oderInfo = {
+    totalPrice: food?.Regual_Price,
+    foodsId: food?._id,
+    userName: user?.displayName,
+    email: user?.email,
+  };
+
 
   return (
     <div>
@@ -54,12 +63,15 @@ const FoodDetails = () => {
             <p className="mb-2">Quectity: {food.quectity}</p>
 
             <div className="flex gap-3">
-              <Link to={`/checkout/${food._id}`}>
+              <Link state={oderInfo} to={`/dashboard/checkout`}>
                 <button className="border-[1px] px-7 text-white font-semibold hover:opacity-80 bg-[#ffa41f] transition-all rounded-sm border-[#fff] py-2">
-                  Oder Now
+                  CheckOut
                 </button>
               </Link>
-              <button onClick={handleAddToCard} className="border-[1px] px-7 text-white font-semibold bg-[#ffa41f] hover:opacity-80 transition-all rounded-sm border-[#fff] py-2">
+              <button
+                onClick={handleAddToCard}
+                className="border-[1px] px-7 text-white font-semibold bg-[#ffa41f] hover:opacity-80 transition-all rounded-sm border-[#fff] py-2"
+              >
                 Add To Card
               </button>
             </div>

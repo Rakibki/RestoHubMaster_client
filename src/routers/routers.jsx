@@ -20,6 +20,9 @@ import DashboardLayout from "../layout/DashboardLayout";
 import All_food_items from "../pages/bashboard/adminDashboard/all_food_items/All_food_items";
 import Customer from "../pages/bashboard/adminDashboard/customar/Customer";
 import useAxiosLocal from "../hooks/useAxiosLocal";
+import PaymentHistory from "../pages/bashboard/userDashboard/paymentHistrory/PaymentHistory";
+import Oders from "../pages/bashboard/adminDashboard/all_oders/Oders";
+import Profile from "../components/profile/Profile";
 
 const axiosLocal = useAxiosLocal();
 
@@ -57,19 +60,6 @@ const router = createBrowserRouter([
           return res?.data;
         },
       },
-      {
-        path: "/checkout/:id",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Checkout />{" "}
-          </PrivateRoute>
-        ),
-        loader: ({ params }) =>
-          fetch(
-            `https://server-omega-ten-11.vercel.app/product_details/${params.id}`
-          ),
-      },
     ],
   },
 
@@ -94,6 +84,10 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      {
         path: "MyBookTable",
         element: <MyBookTable />,
       },
@@ -106,8 +100,20 @@ const router = createBrowserRouter([
         element: <Customer />,
       },
       {
+        path: "paymentHistory",
+        element: <PaymentHistory />,
+      },
+      {
         path: "subscribers",
         element: <Subscribers />,
+      },
+      {
+        path: "all-Oders",
+        element: <Oders />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       {
         path: "all_foods",

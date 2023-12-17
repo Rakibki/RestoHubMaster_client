@@ -153,40 +153,27 @@
 
 // export default Checkout;
 
+import { loadStripe } from "@stripe/stripe-js";
+import CheckoutForm from "./CheckoutForm";
+import Page_title from "../../shared/page_title/Page_title";
+import { useLocation } from "react-router-dom";
+import { Elements } from "@stripe/react-stripe-js";
 
-
-
-
-
-
-
-import {loadStripe} from '@stripe/stripe-js';
-import {CardElement, Elements, useElements, useStripe} from '@stripe/react-stripe-js';
-import CheckoutForm from './CheckoutForm';
-import Page_title from '../../shared/page_title/Page_title';
-import { useEffect, useState } from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-
-const stripePromise = loadStripe("sk_test_51OEDjUEez6aYevYuP6yc4s5RmXnUHhtRkNFDPqUFueO8sHIRzqw5Xugrl9464uZIJPHAldHK963kWq7NeYeZMV1R00GjgXgtZR");
-
+const stripePromise = loadStripe("pk_test_51OO1NxG080f7o8Kk2MTdrbRA00yqAw6d0W8dDvhsuHihZB1lNr4n61aXHliFKRapYp8WJ00TuZmmhq0gguQZkT8z00JlXMyU1k");
 
 const Checkout = () => {
-  const [clientSecret, setClientSecret] = useState("");
-  const axiosSecure = useAxiosSecure()
-
-  useEffect(() => {
-   axiosSecure.post('create-payment', {price: 999})
-   .then((res) => setClientSecret(res?.clientSecret))
-  }, [])
-
-  console.log(clientSecret);
+  const localtion = useLocation();
+  const oderInfo = localtion?.state;
 
   return (
     <div>
       <Page_title>Checkout Now</Page_title>
-      <CheckoutForm />
-    </div>
-  )
-}
 
-export default Checkout
+      <Elements stripe={stripePromise}>
+        <CheckoutForm oderInfo={oderInfo} />
+      </Elements>
+    </div>
+  );
+};
+
+export default Checkout;

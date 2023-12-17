@@ -5,12 +5,12 @@ import { authContext } from "../../providers/AuthProvaider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 
-const MyCard = ({setOpenCard}) => {
+const MyCard = ({ setOpenCard }) => {
   const { user } = useContext(authContext);
   const axiosSecure = useAxiosSecure();
 
   const { isPending, data: myCard } = useQuery({
-    queryKey: ["myCard"],
+    queryKey: ["myCards"],
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/myCard/${user?.email}`);
@@ -19,6 +19,17 @@ const MyCard = ({setOpenCard}) => {
   });
 
   if (isPending) <Loadiing />;
+  const totalPrice = parseInt(
+    myCard?.reduce((acc, curr) => acc + curr?.Regual_Price, 0)
+  );
+  const foodsId = myCard?.map((item) => item?._id);
+
+  const oderInfo = {
+    totalPrice,
+    foodsId,
+    userName: user.displayName,
+    email: user?.email,
+  };
 
   return (
     <div className="mt-6 ">
@@ -51,11 +62,16 @@ const MyCard = ({setOpenCard}) => {
 
       <div className="flex justify-center mt-6">
         <div className="flex gap-2">
-          <button className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white">
-            Check Out
-          </button>
-          <Link to={"/myCard"}>
-            <button onClick={() => setOpenCard(false)} className="px-6 py-2  rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white">
+          <Link state={oderInfo} to={`/dashboard/checkout`}>
+            <button className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white">
+              Check Out
+            </button>
+          </Link>
+          <Link to={"dashboard/myCard"}>
+            <button
+              onClick={() => setOpenCard(false)}
+              className="px-6 py-2  rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white"
+            >
               View Card
             </button>
           </Link>

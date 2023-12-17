@@ -1,7 +1,12 @@
 import { Link, Outlet } from "react-router-dom";
 import logo from "../assets/images/logo.png";
+import { useContext } from "react";
+import { authContext } from "../providers/AuthProvaider";
 
 const DashboardLayout = () => {
+
+  const {user} = useContext(authContext)
+
   return (
     <div className="grid max-w-[1250px] gap-2 w-full mx-auto grid-cols-12">
       <div className="col-span-2 w-full border-2 h-screen">
@@ -15,12 +20,31 @@ const DashboardLayout = () => {
           >
             <p>Add Food Item</p>
           </Link>
+          <Link
+            to={"all-Oders"}
+            className="mb-3  transition-all text-[#ffa41f]  "
+          >
+            <p>ALl Oders</p>
+          </Link>
+          <Link
+            to={`profile`}
+            className="mb-3 transition-all text-[#ffa41f]  "
+          >
+            <p>Profile</p>
+          </Link>
 
           <Link
             to={"MyBookTable"}
             className=" mb-3  transition-all text-[#ffa41f]  "
           >
             <p>My Table Book History</p>
+          </Link>
+
+          <Link
+            to={"paymentHistory"}
+            className=" mb-3  transition-all text-[#ffa41f]  "
+          >
+            <p>Payment History</p>
           </Link>
 
           <Link
