@@ -7,7 +7,7 @@ import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
 const Clients = () => {
   return (
-    <div className="border-2 mt-24 carousel w-full">
+    <div className="border-2 h-screen mt-24 carousel w-full">
       <div id="slide5" className="carousel-item p-10 relative w-full">
         <div>
           <h1 className="text-lg text-center font-semibold text-[#ffa41f]">
@@ -15,9 +15,10 @@ const Clients = () => {
           </h1>
           <p className="text-center mt-4">Our Clients Choose Us</p>
 
-          <div className="flex mt-10 justify-center">
+          <div className="flex mt-10 mx-auto w-[110px] justify-center">
             <img className="rounded-full" src={client1} alt="" />
           </div>
+
           <p className="text-center mt-6">John Doe</p>
           <p className="text-sm mt-4 text-center text-slate-600">
             Regular Customer
@@ -57,7 +58,7 @@ const Clients = () => {
           </h1>
           <p className="text-center mt-4">Our Clients Choose Us</p>
 
-          <div className="flex mt-10 justify-center">
+          <div className="flex mx-auto w-[110px] mt-10 justify-center">
             <img className="rounded-full" src={client2} alt="" />
           </div>
           <p className="text-center mt-6">John Doe</p>
@@ -99,7 +100,7 @@ const Clients = () => {
           </h1>
           <p className="text-center mt-4">Our Clients Choose Us</p>
 
-          <div className="flex mt-10 justify-center">
+          <div className="flex mx-auto w-[110px] mt-10 justify-center">
             <img className="rounded-full" src={client3} alt="" />
           </div>
           <p className="text-center mt-6">John Doe</p>

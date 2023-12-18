@@ -23,6 +23,14 @@ import useAxiosLocal from "../hooks/useAxiosLocal";
 import PaymentHistory from "../pages/bashboard/userDashboard/paymentHistrory/PaymentHistory";
 import Oders from "../pages/bashboard/adminDashboard/all_oders/Oders";
 import Profile from "../components/profile/Profile";
+import OurMenu from "../pages/ourMenu/OurMenu";
+import Wishlist from "../pages/bashboard/userDashboard/wishlist/Wishlist";
+import UserHome from "../pages/bashboard/userDashboard/userHome/UserHome";
+import AdminHome from "../pages/bashboard/adminDashboard/adminHome/AdminHome";
+import DevliveryManHome from "../pages/bashboard/devliveryManDashboard/devliveryManHome/DevliveryManHome";
+import MyDeliveryList from "../pages/bashboard/devliveryManDashboard/myDeliveryList/MyDeliveryList";
+import AllTableBook from "../pages/bashboard/adminDashboard/allTableBook/AllTableBook";
+import MyReview from "../pages/bashboard/devliveryManDashboard/MyReview/MyReview";
 
 const axiosLocal = useAxiosLocal();
 
@@ -39,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/allFood",
         element: <All_food />,
+      },
+      {
+        path: "/menu",
+        element: <OurMenu />,
       },
       {
         path: "/blog",
@@ -112,8 +124,36 @@ const router = createBrowserRouter([
         element: <Oders />,
       },
       {
+        path: "userHome",
+        element: <UserHome />,
+      },
+      {
+        path: "adminHome",
+        element: <AdminHome />,
+      },
+      {
+        path: "myReview",
+        element: <MyReview />,
+      },
+      {
+        path: "allTablebook",
+        element: <AllTableBook />
+      },
+      {
+        path: "myDeliveryList",
+        element: <MyDeliveryList />,
+      },
+      {
+        path: "deviverManHome",
+        element: <DevliveryManHome />,
+      },
+      {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "wishlist",
+        element: <Wishlist />,
       },
       {
         path: "all_foods",

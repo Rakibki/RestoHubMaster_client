@@ -42,10 +42,10 @@ const MyCard = ({ setOpenCard }) => {
           return (
             <div
               key={food._id}
-              className="grid hover:shadow-xl hover:shadow-[#ffa41f] transition-all gap-2 mb-2 border-[1px] grid-cols-6"
+              className="grid hover:shadow-xl hover:shadow-[#ffa41f] h-[80px] overflow-hidden transition-all gap-2 mb-2 border-[1px] grid-cols-6"
             >
-              <div className="col-span-2">
-                <img src={food?.image} alt="" />
+              <div className="col-span-2 h-full overflow-hidden w-full">
+                <img className="h-auto" src={food?.image} alt="" />
               </div>
               <div className="col-span-4">
                 <h4 className="text-base font-extralight">

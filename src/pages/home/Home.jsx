@@ -4,9 +4,8 @@ import Gallery from "../Gallery/Gallery";
 import About_section from "./About_section";
 import Clients from "./Clients.JSX";
 import Top_food from "./Top_food";
-import {Helmet} from "react-helmet"
+import { Helmet } from "react-helmet";
 import Reservation from "./Reservation";
-
 
 const Home = () => {
   return (

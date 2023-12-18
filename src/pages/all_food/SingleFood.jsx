@@ -7,10 +7,12 @@ import { Rate } from "antd";
 import { authContext } from "../../providers/AuthProvaider";
 import Swal from "sweetalert2";
 import useAxiosLocal from "../../hooks/useAxiosLocal";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SingleFood = ({ food }) => {
   const { user } = useContext(authContext);
   const axiosLocal = useAxiosLocal();
+  const axiosSecure = useAxiosSecure();
 
   const handleCard = async (food) => {
     if (!user) {
@@ -35,6 +37,17 @@ const SingleFood = ({ food }) => {
         icon: "success",
         title: "Successful",
         text: "Card added successfully",
+      });
+    }
+  };
+
+  const handleWithList = async () => {
+    const res = await axiosSecure.post(`/withList/${user?.email}`, food);
+    if (res?.data?.insertedId) {
+      Swal.fire({
+        icon: "success",
+        title: "Successful",
+        text: "Successfully added to wish list",
       });
     }
   };
@@ -70,7 +83,10 @@ const SingleFood = ({ food }) => {
 
         <div className="flex mt-3 mb-4 justify-center">
           <div className="flex gap-2">
-            <div className="border-[1px] hover:bg-[#ffa41f] hover:text-white hover:border-none border-[#1f2937] p-2">
+            <div
+              onClick={handleWithList}
+              className="border-[1px] hover:bg-[#ffa41f] hover:text-white hover:border-none border-[#1f2937] p-2"
+            >
               <AiFillHeart />
             </div>
             <div

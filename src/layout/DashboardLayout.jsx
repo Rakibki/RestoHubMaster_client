@@ -1,15 +1,20 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
-import { useContext } from "react";
-import { authContext } from "../providers/AuthProvaider";
+import { signOut } from "firebase/auth";
+import auth from "../firebase/firebase.confic";
 
 const DashboardLayout = () => {
+  const naviagte = useNavigate();
 
-  const {user} = useContext(authContext)
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      naviagte("/");
+    });
+  };
 
   return (
     <div className="grid max-w-[1250px] gap-2 w-full mx-auto grid-cols-12">
-      <div className="col-span-2 w-full border-2 h-screen">
+      <div className="col-span-2 w-full border-2 relative h-screen">
         <img className="p-3" src={logo} alt="" />
         <hr />
 
@@ -26,12 +31,6 @@ const DashboardLayout = () => {
           >
             <p>ALl Oders</p>
           </Link>
-          <Link
-            to={`profile`}
-            className="mb-3 transition-all text-[#ffa41f]  "
-          >
-            <p>Profile</p>
-          </Link>
 
           <Link
             to={"MyBookTable"}
@@ -41,10 +40,58 @@ const DashboardLayout = () => {
           </Link>
 
           <Link
+            to={"wishlist"}
+            className=" mb-3  transition-all text-[#ffa41f]  "
+          >
+            <p>Wishlist</p>
+          </Link>
+
+          <Link
             to={"paymentHistory"}
             className=" mb-3  transition-all text-[#ffa41f]  "
           >
             <p>Payment History</p>
+          </Link>
+
+          <Link
+            to={"userHome"}
+            className=" mb-3  transition-all text-[#ffa41f]  "
+          >
+            <p>User Home</p>
+          </Link>
+
+          <Link
+            to={"adminHome"}
+            className=" mb-3  transition-all text-[#ffa41f]  "
+          >
+            <p>Admin Home</p>
+          </Link>
+
+          <Link
+            to={"allTablebook"}
+            className=" mb-3  transition-all text-[#ffa41f]  "
+          >
+            <p>Manage Table</p>
+          </Link>
+
+          <Link
+            to={"myReview"}
+            className=" mb-3  transition-all text-[#ffa41f]  "
+          >
+            <p>my review</p>
+          </Link>
+
+          <Link
+            to={"deviverManHome"}
+            className=" mb-3  transition-all text-[#ffa41f]  "
+          >
+            <p>Devivery Man Home</p>
+          </Link>
+          <Link
+            to={"myDeliveryList"}
+            className=" mb-3  transition-all text-[#ffa41f]  "
+          >
+            <p>My Delivery List</p>
           </Link>
 
           <Link
@@ -86,6 +133,19 @@ const DashboardLayout = () => {
           >
             <p>Customers</p>
           </Link>
+        </div>
+
+        <div className="absolute bottom-2">
+          <Link to={`profile`} className="mb-3 transition-all text-[#ffa41f]  ">
+            <p>Profile</p>
+          </Link>
+
+          <button
+            onClick={handleLogout}
+            className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white"
+          >
+            Log Out
+          </button>
         </div>
       </div>
       <div className="col-span-10 border-2">

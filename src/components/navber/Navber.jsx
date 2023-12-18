@@ -11,11 +11,15 @@ import MyCard from "./MyCard";
 import { useQuery } from "@tanstack/react-query";
 import Loadiing from "../../shared/Loadiing";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import GetRole from "../../hooks/GetRole";
 
 const Navber = ({ children }) => {
   const { user, logOut } = useContext(authContext);
   const [openCard, setOpenCard] = useState(false);
   const axiosSecure = useAxiosSecure();
+  const [role, setRole] = useState(null);
+
+  GetRole().then((res) => setRole(res?.role));
 
   const navitems = (
     <>
@@ -44,7 +48,21 @@ const Navber = ({ children }) => {
               : ""
           }
         >
-          All Food
+          Our Shop
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={"/menu"}
+          className={({ isActive, isPending }) =>
+            isPending
+              ? ""
+              : isActive
+              ? "text-[#ffa41f] border-b-2 border-[#ffa41f] font-semibold"
+              : ""
+          }
+        >
+          Our Nemu
         </NavLink>
       </li>
       <li>
@@ -68,10 +86,7 @@ const Navber = ({ children }) => {
     logOut();
   };
 
-  const {
-    data: myCardLength,
-    refetch,
-  } = useQuery({
+  const { data: myCardLength, refetch } = useQuery({
     queryKey: ["myCardLength"],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -79,8 +94,6 @@ const Navber = ({ children }) => {
       return res?.data?.result;
     },
   });
-
-
 
   return (
     <Container>
@@ -125,25 +138,12 @@ const Navber = ({ children }) => {
             </div>
             {user ? (
               <div>
-                <h2 className="mr-4">{user?.displayName}</h2>
-                <div className="dropdown dropdown-bottom dropdown-end">
-                  <label tabIndex={0} className="">
-                    <div className="relative">
-                      <img
-                        className="w-[45px] border-2 border-[#ffa41f] cursor-pointer h-[45px] rounded-full"
-                        src={user?.photoURL}
-                        alt=""
-                      />
-                    </div>
-                  </label>
-                  <Dropwoun handleLogOut={handleLogOut} />
-                </div>
                 <div>
                   {/* card */}
                   <div>
                     <div
                       onClick={() => setOpenCard(!openCard)}
-                      className="relative ml-4 cursor-pointer"
+                      className="relative mr-6 cursor-pointer"
                     >
                       <FiShoppingCart className="text-2xl" />
                       <div className="badge bg-[#ffa41f] border-[#ffa41f] text-white font-semibold absolute -top-3 left-3 badge-secondary">
@@ -172,6 +172,22 @@ const Navber = ({ children }) => {
                     </div>
                   </div>
                 </div>
+                <div className="dropdown dropdown-bottom dropdown-end">
+                  <label tabIndex={0} className="">
+                    <div className="relative">
+                      <img
+                        className="w-[45px] border-2 border-[#ffa41f] cursor-pointer h-[45px] rounded-full"
+                        src={user?.photoURL}
+                        alt=""
+                      />
+                    </div>
+                  </label>
+                  <Dropwoun handleLogOut={handleLogOut} />
+                </div>
+                <div className="flex ml-4 flex-col">
+                  <h2 className="">{user?.displayName}</h2>
+                  <h2 className="">{role}</h2>
+                </div>
               </div>
             ) : (
               <Link className="ml-10" to={"/login"}>
@@ -192,7 +208,6 @@ const Navber = ({ children }) => {
           <ul className="flex flex-col bg-[#374354] text-white relative gap-2 p-10 w-80 min-h-full">
             {/* Sidebar content here */}
             {navitems}
-
             <img className="absolute bottom-10" src={logo} alt="" />
           </ul>
         </div>

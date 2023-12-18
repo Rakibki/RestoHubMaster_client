@@ -6,6 +6,8 @@ import Loadiing from "../../shared/Loadiing";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Helmet } from "react-helmet";
 import useAxiosLocal from "../../hooks/useAxiosLocal";
+import coverImage from "../../assets/banner2-4281900d.jpg"
+import Cover from "../../components/cover/Cover";
 
 const All_food = () => {
   const [totalFood, setTotalFood] = useState(null);
@@ -16,11 +18,10 @@ const All_food = () => {
   const axiosLocal = useAxiosLocal();
 
   useEffect(() => {
-    axiosLocal.get("/all_foods_lenth")
-    .then((res) => {
-      setTotalFood(res?.data?.result)
-    })
-  },)
+    axiosLocal.get("/all_foods_lenth").then((res) => {
+      setTotalFood(res?.data?.result);
+    });
+  });
 
   const [itemPerPage, setItemPerPage] = useState(9);
   const pages = Math.ceil(totalFood / itemPerPage);
@@ -29,9 +30,10 @@ const All_food = () => {
   const { isPending, data, refetch } = useQuery({
     queryKey: ["repoData", curentPage, itemPerPage, sort],
     queryFn: async () => {
-      const res = await axiosLocal.get(`/all_foods?size=${itemPerPage}&page=${curentPage}&sort=${sort}&searchValue=${searchValue}&minValue=${priceSotting.min}&maxvalue=${priceSotting.max}`
+      const res = await axiosLocal.get(
+        `/all_foods?size=${itemPerPage}&page=${curentPage}&sort=${sort}&searchValue=${searchValue}&minValue=${priceSotting.min}&maxvalue=${priceSotting.max}`
       );
-      return res?.data
+      return res?.data;
     },
   });
 
@@ -83,9 +85,9 @@ const All_food = () => {
     <div>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>All Food</title>
+        <title>Our Shop</title>
       </Helmet>
-      <Page_title>All Food</Page_title>
+      <Cover desc={"Would you like to try a dish?"} title={"OUR SHOP"} image={coverImage}  ></Cover>
       <div className=" p-16 md:p-3 mt-16">
         <div className="flex gap-6 mb-6 justify-center">
           <div className="flex border-[1px] border-[#ffa41f] p-2 gap-1">
@@ -172,7 +174,8 @@ const All_food = () => {
             </div>
           </div>
           <div className="grid z-20 md:grid-cols-2 lg:grid-cols-3 gap-3 col-span-3">
-              {data.length > 0 && data?.map((food) => <SingleFood key={food._id} food={food} />)}
+            {data.length > 0 &&
+              data?.map((food) => <SingleFood key={food._id} food={food} />)}
           </div>
         </div>
       </div>
