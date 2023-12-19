@@ -3,26 +3,13 @@ import logo from "../assets/images/logo.png";
 import { signOut } from "firebase/auth";
 import auth from "../firebase/firebase.confic";
 import { CiLogin } from "react-icons/ci";
-import { IoBagAddOutline } from "react-icons/io5";
-import NavItem from "../components/navItem/NavItem";
-import { CgBoard } from "react-icons/cg";
-import { MdHistory } from "react-icons/md";
-import { AiFillSketchCircle } from "react-icons/ai";
-import { MdPayments } from "react-icons/md";
-import { FaHome } from "react-icons/fa";
-import { CiViewTable } from "react-icons/ci";
-import { MdPreview } from "react-icons/md";
-import { CiBoxList } from "react-icons/ci";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { GiShakingHands } from "react-icons/gi";
-import { CiForkAndKnife } from "react-icons/ci";
-import { IoFastFoodSharp } from "react-icons/io5";
-import { FaUsers } from "react-icons/fa";
 import GetRole from "../hooks/GetRole";
 import { useState } from "react";
 import AdminMenu from "../pages/bashboard/adminDashboard/adminMenu/AdminMenu";
 import UserMenu from "../pages/bashboard/userDashboard/userMenu/UserMenu";
 import DeliveryManMenu from "../pages/bashboard/devliveryManDashboard/deliveryManMenu/deliveryManMenu";
+import { FaRegUser } from "react-icons/fa";
+
 
 const DashboardLayout = () => {
   const naviagte = useNavigate();
@@ -50,20 +37,20 @@ const DashboardLayout = () => {
           {role === "deliveryMan" && <DeliveryManMenu />}
         </div>
 
-        <div className="absolute bottom-2">
+        <div className="absolute p-3 bottom-2">
           <Link
             to={`profile`}
-            className="mb-2transition-all text-[#515d6e] font-Inter text-base"
+            className="mb-2transition-all font-semibold mb-3 flex gap-2 items-center text-[#515d6e] font-Inter text-base"
           >
-            <p>Profile</p>
+            <FaRegUser className="text-xl" /> <p>Profile</p>
           </Link>
 
           <Link
             onClick={handleLogout}
             to={`profile`}
-            className="mb-3 transition-all flex gap-5 items-center text-[#515d6e] font-Inter text-base"
+            className="mb-3 transition-all font-semibold flex text-[#b91c1c] gap-2 items-center font-Inter text-base"
           >
-            <p>Logout</p> <CiLogin className="text-2xl" />
+            <CiLogin className="text-2xl" /> <p>Logout</p>
           </Link>
         </div>
       </div>

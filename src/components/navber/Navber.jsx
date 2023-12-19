@@ -29,7 +29,7 @@ const Navber = ({ children }) => {
             isPending
               ? ""
               : isActive
-              ? "text-[#ffa41f] border-b-2 border-[#ffa41f] font-semibold"
+              ? "text-[#ffa41f]  border-[#ffa41f] text-lg "
               : ""
           }
           to={"/"}
@@ -44,7 +44,7 @@ const Navber = ({ children }) => {
             isPending
               ? ""
               : isActive
-              ? "text-[#ffa41f] border-b-2 border-[#ffa41f] font-semibold"
+              ? "text-[#ffa41f]  border-[#ffa41f] text-lg font-Inter"
               : ""
           }
         >
@@ -58,7 +58,7 @@ const Navber = ({ children }) => {
             isPending
               ? ""
               : isActive
-              ? "text-[#ffa41f] border-b-2 border-[#ffa41f] font-semibold"
+              ? "text-[#ffa41f]  border-[#ffa41f] text-lg font-Inter"
               : ""
           }
         >
@@ -72,7 +72,7 @@ const Navber = ({ children }) => {
             isPending
               ? ""
               : isActive
-              ? "text-[#ffa41f] border-b-2 border-[#ffa41f] font-semibold"
+              ? "text-[#ffa41f]  border-[#ffa41f] text-lg font-Inter"
               : ""
           }
         >
@@ -131,7 +131,7 @@ const Navber = ({ children }) => {
             <div className="flex-none hidden lg:block">
               <ul className="flex mr-10 items-center gap-4">
                 {/* Navbar menu content here */}
-                <div className="flex gap-5 text-base font-medium">
+                <div className="flex gap-5 text-base text-lg">
                   {navitems}
                 </div>
               </ul>

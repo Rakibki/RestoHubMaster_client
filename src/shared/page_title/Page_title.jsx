@@ -1,5 +1,5 @@
 import "./style.css"
-
+ 
 const Page_title = ({children}) => {
   return (
     <div id="container" className="w-full relative h-[200px]">

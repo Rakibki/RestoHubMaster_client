@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import GetUserByEmail from "../../hooks/GetUserByEmail";
+import { authContext } from "../../providers/AuthProvaider";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
+  const {user:currentUser} = useContext(authContext)
+
 
     GetUserByEmail().then((res) => {
       setUser(res);
     });
 
-  console.log(user);
 
-  return <div>Profile</div>;
+  return <div>
+    {/* <Cover /> */}
+  </div>;
 };
 
 export default Profile;

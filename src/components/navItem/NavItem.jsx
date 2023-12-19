@@ -8,15 +8,15 @@ const NavItem = ({ location, Icon, text }) => {
           isPending
             ? ""
             : isActive
-            ? "text-[#ffa41f] bg-[#ffa41f] block p-2 bg-opacity-20"
+            ? "text-[#ffa41f] bg-[#ffa41f] transition-all block p-2 bg-opacity-20"
             : ""
         }
         to={location}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex transition-all  items-center gap-2">
           <div>
             <Icon className="text-2xl" />
-          </div>{" "}
+          </div>
           <div>{text}</div>
         </div>
       </NavLink>

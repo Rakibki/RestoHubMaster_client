@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import GetRole from "../../hooks/GetRole";
+import { MdDashboard } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
 
 const Dropwoun = ({ handleLogOut }) => {
   return (
@@ -11,12 +11,17 @@ const Dropwoun = ({ handleLogOut }) => {
       >
         <Link
           to={"/dashboard"}
-          className="mb-3 hover:text-white hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
+          className="mb-3 hover:text-white flex gap-2 items-center hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
         >
-          <p>Dashboard</p>
+          <MdDashboard className="text-lg" /> <p>Dashboard</p>
         </Link>
 
-
+        <Link
+          to={"/dashboard/profile"}
+          className="mb-3 hover:text-white flex gap-2 items-center hover:bg-[#374354] transition-all text-[#ffa41f] border-[1px] p-2 "
+        >
+          <FaRegUser className="text-lg" /> <p>Profile</p>
+        </Link>
 
         <button
           onClick={handleLogOut}

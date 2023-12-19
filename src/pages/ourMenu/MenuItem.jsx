@@ -1,6 +1,5 @@
-
 const MenuItem = ({ item }) => {
-    console.log(item);
+  console.log(item);
   return (
     <div className="flex gap-3">
       <div className=" h-[100px] w-[100px]">
@@ -13,10 +12,17 @@ const MenuItem = ({ item }) => {
       </div>
       <div className="">
         <div className="flex justify-between">
-          <h2 className="text-2xl font-Cinzel text-[#151515]">{item?.Food_name}--------</h2>
-          <h2 className="text-[#BB8506] text-sm font-medium">${item?.Regual_Price}</h2>
+          <h2 className="text-2xl font-Cinzel text-[#151515]">
+            {item?.Food_name}--------
+          </h2>
+          <h2 className="text-[#BB8506] text-sm font-medium">
+            ${item?.Regual_Price}
+          </h2>
         </div>
-        <p className="text-[#737373] text-lg">Warm goats cheese and roasted vegetable salad with black olive tapenade crostini</p>
+        <p className="text-[#737373] text-lg">
+          Warm goats cheese and roasted vegetable salad with black olive
+          tapenade crostini
+        </p>
       </div>
     </div>
   );
