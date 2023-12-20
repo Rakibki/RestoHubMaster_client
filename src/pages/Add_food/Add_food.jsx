@@ -1,29 +1,34 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { authContext } from "../../providers/AuthProvaider";
-import axios from "axios";
 import swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import UploadeImage from "../../hooks/UploadeImage";
 
 const Add_food = () => {
   const { user } = useContext(authContext);
+  const axiosSecure = useAxiosSecure();
 
-  const handle_Add_food = (e) => {
+  const handle_Add_food = async (e) => {
     e.preventDefault();
-
+    const imagefile = e.target.image_URL.files[0];
+    const image = await UploadeImage(imagefile)
+   
     const food_info = {
       buyer_name: user?.displayName,
       buyer_email: user?.email,
       Food_Name: e.target.Food_Name.value,
       Quentity: e.target.Quentity.value,
       Food_Origin: e.target.Food_Origin.value,
-      image_URL: e.target.image_URL.value,
+      image_URL: image,
       Categoty: e.target.Categoty.value,
       Price: e.target.Price.value,
       count: 0,
     };
 
-    axios
-      .post("https://server-omega-ten-11.vercel.app/add_food_item", food_info)
+
+    axiosSecure
+      .post("/add_food_item", food_info)
       .then((res) => {
         console.log(res.data);
         new swal("Good..", "Food added successfully", "success");
@@ -89,27 +94,26 @@ const Add_food = () => {
               />
             </div>
 
-            <div className="grid grid-cols-3 mt-4 gap-3">
-              <input
-                name="image_URL"
-                placeholder="image URL"
-                type="text"
-                className="border-[1px] col-span-2 p-3 w-full outline-[#ffa41f] "
-              />
-              <select
-                placeholder="Categoty"
-                type="text"
-                className="border-[1px] p-3 w-full outline-[#ffa41f]"
-                name="Categoty"
-                id=""
-              >
-                <option value="">Gategory</option>
-                <option value="Desserts ">Desserts</option>
-                <option value="Appetizers">Appetizers</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Family Dishes">Family Dishes</option>
-              </select>
-            </div>
+            <select
+              placeholder="Categoty"
+              type="text"
+              className="border-[1px] p-3 mt-3 w-full outline-[#ffa41f]"
+              name="Categoty"
+              id=""
+            >
+              <option value="">Gategory</option>
+              <option value="Desserts ">Desserts</option>
+              <option value="Appetizers">Appetizers</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Family Dishes">Family Dishes</option>
+            </select>
+            <input
+              name="image_URL"
+              placeholder="image URL"
+              type="file"
+              required
+              className="mt-2"
+            />
             <button
               type="submit"
               className="bg-[#ffa41f] hover:opacity-80 w-full mt-6 font-semibold text-white px-4 py-2"

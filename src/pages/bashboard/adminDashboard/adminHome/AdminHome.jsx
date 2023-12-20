@@ -43,15 +43,10 @@ const AdminHome = () => {
         <div className="mt-10">
           <TopFiveSellFood />
         </div>
-        
+
         <div className="mt-10">
           <DayAnalytics />
         </div>
-
-        <div className="mt-10">
-          <FoodAvailable />
-        </div>
-
       </div>
     </div>
   );

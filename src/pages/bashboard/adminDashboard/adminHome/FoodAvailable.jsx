@@ -19,15 +19,51 @@ const FoodAvailable = () => {
   console.log(data);
 
   return (
-    <div className="grid gap-3 grid-cols-10">
-      <div className="col-span-7 p-6">
-        <div>
-          <h2>Breakfast</h2>
-          <ProgressBar transitionDuration="1s" completed={data?.Breakfast} maxCompleted={20} />
+    <div className="mt-10">
+      <div>
+        <div className="flex shadow-xl gap-3">
+          <div className="border-[1px] rounded-3xl w-full p-3">
+            <h2 className="mb-1 text-[#64748b]">Breakfast</h2>
+            <ProgressBar
+              bgColor="#ffa41f"
+              transitionDuration="1s"
+              completed={data?.Breakfast}
+              maxCompleted={10}
+            />
+          </div>
+          <div className="border-[1px] shadow-xl rounded-3xl w-full p-3">
+            <h2 className="mb-1 text-[#64748b]">Appetizers</h2>
+            <ProgressBar
+              bgColor="#ffa41f"
+              transitionDuration="1s"
+              completed={data?.Appetizers}
+              maxCompleted={10}
+            />
+          </div>
+        </div>
+
+        <div className="flex mt-4 shadow-xl gap-3">
+          <div className="border-[1px] rounded-3xl w-full p-3">
+            <h2 className="mb-1 text-[#64748b]">Desserts</h2>
+            <ProgressBar
+              bgColor="#ffa41f"
+              transitionDuration="1s"
+              completed={data?.Desserts}
+              maxCompleted={10}
+            />
+          </div>
+
+          <div className="border-[1px] shadow-xl rounded-3xl w-full p-3">
+            <h2 className="mb-1 text-[#64748b]">Family Dishes</h2>
+            <ProgressBar
+              bgColor="#ffa41f"
+              transitionDuration="1s"
+              completed={data?.FamilyDishes}
+              maxCompleted={10}
+            />
+          </div>
         </div>
       </div>
-
-      <div className="col-span-3">ewrewrewrewr</div>
     </div>
   );
 };

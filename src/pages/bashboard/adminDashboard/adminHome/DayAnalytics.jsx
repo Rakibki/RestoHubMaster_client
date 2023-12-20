@@ -4,9 +4,13 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Loadiing from "../../../../shared/Loadiing";
 import { useQuery } from "@tanstack/react-query";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from "recharts";
+import FoodAvailable from "./FoodAvailable";
+import "./style.css";
+import { useState } from "react";
 
 const DayAnalytics = () => {
   const axiosSecure = useAxiosSecure();
+  const [tabIndex, setTabIndex] = useState(0);
 
   const { isPending, data: DayAnalyticsData } = useQuery({
     queryKey: ["dayAnalytics"],
@@ -20,70 +24,139 @@ const DayAnalytics = () => {
 
   console.log(DayAnalyticsData);
 
-  const data = [
+  const CustomerData = [
     {
       name: "Sunday",
-      uv: 400,
+      uv: DayAnalyticsData?.userResigterDay?.userSunday,
     },
     {
       name: "Monday",
-      uv: 300,
+      uv: DayAnalyticsData?.userResigterDay?.userMonday,
     },
     {
       name: "Tuesday",
-      uv: 200,
+      uv: DayAnalyticsData?.userResigterDay?.userTuesday,
     },
     {
       name: "Wednesday",
-      uv: 278,
+      uv: DayAnalyticsData?.userResigterDay?.userWednesday,
     },
     {
       name: "Thursday",
-      uv: 189,
+      uv: DayAnalyticsData?.userResigterDay?.userThursday,
     },
     {
       name: "Friday",
-      uv: 239,
-      amt: 250,
+      uv: DayAnalyticsData?.userResigterDay?.userFriday,
     },
     {
       name: "Saturday",
-      uv: 349,
+      uv: DayAnalyticsData?.userResigterDay?.userSaturday,
+    },
+  ];
+
+  const odersData = [
+    {
+      name: "Sunday",
+      uv: DayAnalyticsData?.oderDay?.paymentSunday,
+    },
+    {
+      name: "Monday",
+      uv: DayAnalyticsData?.oderDay?.paymentMonday,
+    },
+    {
+      name: "Tuesday",
+      uv: DayAnalyticsData?.oderDay?.paymentTuesday,
+    },
+    {
+      name: "Wednesday",
+      uv: DayAnalyticsData?.oderDay?.paymentWednesday,
+    },
+    {
+      name: "Thursday",
+      uv: DayAnalyticsData?.oderDay?.paymentThursday,
+    },
+    {
+      name: "Friday",
+      uv: DayAnalyticsData?.oderDay?.paymentFriday,
+    },
+    {
+      name: "Saturday",
+      uv: DayAnalyticsData?.oderDay?.paymentSaturday,
     },
   ];
 
   return (
-    <div className="grid gap-2 grid-cols-10">
-      <div className="col-span-7">
-        <Tabs>
-          <TabList className={"flex gap-2"}>
-            <Tab>Customer</Tab>
-            <Tab>Oders</Tab>
-          </TabList>
+    <div>
+      <div className="grid gap-2 grid-cols-11">
+        <div className="col-span-7">
+          <Tabs
+            selectedIndex={tabIndex}
+            onSelect={(index) => setTabIndex(index)}
+            className={
+              "py-6 shadow-2xl rounded-3xl overflow-hidden border-[1px]"
+            }
+          >
+            <TabList
+              className={
+                "flex gap-3 text-[#07143b] text-xl mb-2 ml-4 active:outline-none"
+              }
+            >
+              <Tab
+                className={
+                  tabIndex === 0 ? "pb-1 border-b-4 border-[#ffa41f]" : ""
+                }
+              >
+                Customer
+              </Tab>
+              <Tab
+                className={
+                  tabIndex === 1 ? "pb-1 border-b-4 border-[#ffa41f]" : ""
+                }
+              >
+                Oders
+              </Tab>
+            </TabList>
+            <hr />
+            <TabPanel className={"mt-5"}>
+              <BarChart width={580} height={300} data={CustomerData}>
+                <Bar
+                  radius={true}
+                  barSize={50}
+                  name="Customer"
+                  dataKey="uv"
+                  fill="#ffa41f"
+                />
+                <XAxis className="text-[14px]" dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+              </BarChart>
+            </TabPanel>
 
-          <TabPanel>
-            <BarChart width={350} height={300} data={data}>
-              <Bar barSize={30} name="Customer" dataKey="uv" fill="#ffa41f" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-            </BarChart>
-          </TabPanel>
+            <TabPanel>
+              <BarChart width={580} height={300} data={odersData}>
+                <Bar
+                  radius={true}
+                  barSize={50}
+                  name="Oders"
+                  dataKey="uv"
+                  fill="#ffa41f"
+                />
+                <XAxis className="text-[14px]" dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+              </BarChart>
+            </TabPanel>
+          </Tabs>
 
-          <TabPanel>
-            <BarChart width={350} height={300} data={data}>
-              <Bar barSize={30} name="Oders" dataKey="uv" fill="#c9ab80" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-            </BarChart>
-          </TabPanel>
-        </Tabs>
-      </div>
-      <div className="col-span-3">
-        <TransactionTopFive />
+          <FoodAvailable />
+        </div>
+
+        <div className="col-span-4 shadow-2xl">
+          <TransactionTopFive />
+        </div>
       </div>
     </div>
   );

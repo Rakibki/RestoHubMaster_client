@@ -2,19 +2,55 @@ import { useQuery } from "@tanstack/react-query";
 import Loadiing from "../../../../shared/Loadiing";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { AiOutlineClose } from "react-icons/ai";
+import swal from "sweetalert";
 
 const Oders = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { isPending, data } = useQuery({
-    queryKey: ["AllDers"],
+  const { isPending, data, refetch } = useQuery({
+    queryKey: ["Alloders"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/allOders`);
       return res?.data;
     },
   });
 
-  if (isPending) <Loadiing />;
+  const { isPending: isPending2, data: deliveryMan } = useQuery({
+    queryKey: ["AllDelivaryMan"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/AllDelivaryMan`);
+      return res?.data;
+    },
+  });
+
+  console.log(deliveryMan);
+
+  if ((isPending, isPending2)) <Loadiing />;
+
+  const handleOderDelete = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Are you sure you want to delete the food?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axiosSecure.delete(`/oder/${id}`).then((res) => {
+          if (res.data?.deletedCount > 0) {
+            refetch();
+            swal("Deleted successfully", {
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const handleManageOder = () => {
+    alert("click")
+  }
 
   return (
     <div>
@@ -69,11 +105,15 @@ const Oders = () => {
                         <p>{food?.trangectionId?.slice(0, 5)}...</p>
                       </td>
 
-                      <th>
+                      <th className="flex items-center gap-2">
                         <button
-                          className="p-4 text-white font-bold bg-[#ffa41f]"
+                          onClick={() => handleOderDelete(food?._id)}
+                          className="px-4 py-2 text-white font-bold bg-[#ffa41f]"
                         >
                           <AiOutlineClose />
+                        </button>
+                        <button onClick={() => handleManageOder()} className="px-4 py-2 text-white font-bold bg-[#ffa41f]">
+                          Manage
                         </button>
                       </th>
                     </tr>
