@@ -3,9 +3,37 @@ import Loadiing from "../../../../shared/Loadiing";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { AiOutlineClose } from "react-icons/ai";
 import swal from "sweetalert";
+import ManageOderModel from "../../../../components/modals/manageOderModel/ManageOderModel";
+import { useState } from "react";
 
 const Oders = () => {
   const axiosSecure = useAxiosSecure();
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectOderId, setSeletOderId] = useState(null);
+
+  const openModal = (id) => {
+    setIsOpen(true);
+    setSeletOderId(id);
+  };
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+
+  const afterOpenModal = () => {
+    subtitle.style.color = "#f00";
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   const { isPending, data, refetch } = useQuery({
     queryKey: ["Alloders"],
@@ -22,8 +50,6 @@ const Oders = () => {
       return res?.data;
     },
   });
-
-  console.log(deliveryMan);
 
   if ((isPending, isPending2)) <Loadiing />;
 
@@ -47,10 +73,6 @@ const Oders = () => {
       }
     });
   };
-
-  const handleManageOder = () => {
-    alert("click")
-  }
 
   return (
     <div>
@@ -112,7 +134,10 @@ const Oders = () => {
                         >
                           <AiOutlineClose />
                         </button>
-                        <button onClick={() => handleManageOder()} className="px-4 py-2 text-white font-bold bg-[#ffa41f]">
+                        <button
+                          onClick={() => openModal(food?._id)}
+                          className="px-4 py-2 text-white font-bold bg-[#ffa41f]"
+                        >
                           Manage
                         </button>
                       </th>
@@ -124,6 +149,15 @@ const Oders = () => {
           </div>
         </div>
       )}
+      <ManageOderModel
+        customStyles={customStyles}
+        closeModal={closeModal}
+        modalIsOpen={modalIsOpen}
+        afterOpenModal={afterOpenModal}
+        openModal={openModal}
+        deliveryMan={deliveryMan}
+        selectOderId={selectOderId}
+      />
     </div>
   );
 };
