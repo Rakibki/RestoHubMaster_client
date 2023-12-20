@@ -131,9 +131,7 @@ const Navber = ({ children }) => {
             <div className="flex-none hidden lg:block">
               <ul className="flex mr-10 items-center gap-4">
                 {/* Navbar menu content here */}
-                <div className="flex gap-5 text-base text-lg">
-                  {navitems}
-                </div>
+                <div className="flex gap-5 text-lg">{navitems}</div>
               </ul>
             </div>
             {user ? (
@@ -186,7 +184,7 @@ const Navber = ({ children }) => {
                 </div>
                 <div className="flex ml-4 flex-col">
                   <h2 className="">{user?.displayName}</h2>
-                  <h2 className="">{role}</h2>
+                  <h2 className="text-[#838fa2] text-sm">{role}</h2>
                 </div>
               </div>
             ) : (

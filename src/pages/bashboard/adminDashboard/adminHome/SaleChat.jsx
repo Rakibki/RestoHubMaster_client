@@ -27,31 +27,16 @@ const SaleChat = () => {
       pv: 9800,
     },
     {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
+      name: "Page C",
+      uv: 2000,
+      pv: 9800,
     },
   ];
 
   return (
     <BarChart
       width={500}
-      height={300}
+      height={400}
       data={data}
       margin={{
         top: 5,
