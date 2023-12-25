@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import swal from "sweetalert"
 
 const ManageOderModel = ({
   deliveryMan,
@@ -11,15 +12,23 @@ const ManageOderModel = ({
   afterOpenModal,
   closeModal,
   customStyles,
-  selectOderId
+  selectOderId,
+  refetch
 }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [selectedDeliverManId, setSelectedDeliverManId] = useState(null);
   const axiosSecure = useAxiosSecure();
   const date = new Date(startDate).toDateString()
 
-  const handleSelect = () => {
-    axiosSecure.put(`/selectDelivaryMan?selectedDeliverManId=${selectedDeliverManId}&selectOderId=${selectOderId}&date=${date}`)
+  const handleSelect = async () => {
+    const res = await axiosSecure.put(`/selectDelivaryMan?selectedDeliverManId=${selectedDeliverManId}&selectOderId=${selectOderId}&date=${date}`)
+    if(res?.data){
+      refetch()
+      swal("Successfully selected delivery man", {
+        icon: "success",
+      });
+      closeModal()
+    }
   };
 
 

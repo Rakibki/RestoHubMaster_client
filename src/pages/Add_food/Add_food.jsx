@@ -12,8 +12,8 @@ const Add_food = () => {
   const handle_Add_food = async (e) => {
     e.preventDefault();
     const imagefile = e.target.image_URL.files[0];
-    const image = await UploadeImage(imagefile)
-   
+    const image = await UploadeImage(imagefile);
+
     const food_info = {
       buyer_name: user?.displayName,
       buyer_email: user?.email,
@@ -25,7 +25,6 @@ const Add_food = () => {
       Price: e.target.Price.value,
       count: 0,
     };
-
 
     axiosSecure
       .post("/add_food_item", food_info)
@@ -44,6 +43,11 @@ const Add_food = () => {
         <meta charSet="utf-8" />
         <title>Add Food</title>
       </Helmet>
+
+      <div className="flex mb-4 ml-10 mt-10 gap-3">
+        <div className="w-2 h-8 bg-[#ffa41f]"></div>
+        <h1 className="text-3xl font-semibold">Add A Food </h1>
+      </div>
       <div className="flex my-10 p-6 justify-center">
         <div className="w-[90%] mx-auto md:w-[80%] lg:w-[60%] p-4 border-2">
           <form onSubmit={handle_Add_food}>

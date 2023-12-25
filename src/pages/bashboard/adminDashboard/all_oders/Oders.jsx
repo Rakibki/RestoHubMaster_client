@@ -4,12 +4,14 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { AiOutlineClose } from "react-icons/ai";
 import swal from "sweetalert";
 import ManageOderModel from "../../../../components/modals/manageOderModel/ManageOderModel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Oders = () => {
   const axiosSecure = useAxiosSecure();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectOderId, setSeletOderId] = useState(null);
+  const [filterText, setFilterText] = useState("all");
+  const [data, setData] = useState([]);
 
   const openModal = (id) => {
     setIsOpen(true);
@@ -27,22 +29,6 @@ const Oders = () => {
     },
   };
 
-  const afterOpenModal = () => {
-    subtitle.style.color = "#f00";
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  const { isPending, data, refetch } = useQuery({
-    queryKey: ["Alloders"],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/allOders`);
-      return res?.data;
-    },
-  });
-
   const { isPending: isPending2, data: deliveryMan } = useQuery({
     queryKey: ["AllDelivaryMan"],
     queryFn: async () => {
@@ -51,7 +37,46 @@ const Oders = () => {
     },
   });
 
+  const afterOpenModal = () => {
+    subtitle.style.color = "#f00";
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const {
+    isPending,
+    data: oders,
+    refetch,
+  } = useQuery({
+    queryKey: ["Alloders"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/allOders`);
+      setData(res?.data);
+      return res?.data;
+    },
+  });
+
   if ((isPending, isPending2)) <Loadiing />;
+
+  useEffect(() => {
+    if (filterText == "all") {
+      setData(oders);
+    } else if (filterText == "canceled") {
+      const filterData = oders.filter((item) => item?.status === "canceled");
+      setData(filterData);
+    } else if (filterText == "padding") {
+      const filterData = oders.filter((item) => item?.status === "padding");
+      setData(filterData);
+    } else if (filterText == "On The Way") {
+      const filterData = oders.filter((item) => item?.status === "On The Way");
+      setData(filterData);
+    } else if (filterText == "diliverd") {
+      const filterData = oders.filter((item) => item?.status === "diliverd");
+      setData(filterData);
+    }
+  }, [filterText]);
 
   const handleOderDelete = (id) => {
     swal({
@@ -76,6 +101,28 @@ const Oders = () => {
 
   return (
     <div>
+      <div className="px-6 flex justify-between">
+        <div className="flex mb-4 ml-10 mt-10 gap-3">
+          <div className="w-2 h-8 bg-[#ffa41f]"></div>
+          <h1 className="text-3xl font-semibold">Order History</h1>
+        </div>
+        <div className="flex items-center gap-2">
+          <h2>Sort By:</h2>
+          <select
+            onChange={(e) => setFilterText(e?.target?.value)}
+            className="input rounded-none input-bordered"
+            name=""
+            id=""
+          >
+            <option value="all">All</option>
+            <option value="OnTheWay">On The Way</option>
+            <option value="padding">padding</option>
+            <option value="canceled">canceled</option>
+            <option value="diliverd">diliverd</option>
+          </select>
+        </div>
+      </div>
+
       {data?.length < 1 ? (
         <p className="text-3xl font-semibold text-center text-[#ffa41f] my-6">
           You have no orders
@@ -85,7 +132,7 @@ const Oders = () => {
       )}
 
       {data?.length > 0 && (
-        <div className="mt-10 p-16">
+        <div className=" px-16">
           <div className="overflow-x-auto">
             <table className="table">
               {/* head */}
@@ -112,7 +159,7 @@ const Oders = () => {
                         <p>{food?.email}</p>
                       </td>
                       <td>
-                        <p>{food?.totalPrice}</p>
+                        <p>${food?.totalPrice}</p>
                       </td>
                       <td>
                         <p>{food?.date}</p>
@@ -121,7 +168,7 @@ const Oders = () => {
                         <p>{food?.time}</p>
                       </td>
                       <td>
-                        <p>{food?.status}</p>
+                        <p className={` ${food?.status=='OnTheWay'&& 'text-[#4579b4] bg-[#a5b1e4]'} ${food?.status=='diliverd'&& 'text-[#22c55e] bg-[#d2f4df]'} ${food?.status==='canceled' && "text-[#ef4444] bg-[#fcd9d9]"} ${food?.status==='padding' && "text-[#f59e0b] bg-[#fdecce]"} px-3 py-2 font-medium text-center rounded-2xl`}>{food?.status}</p>
                       </td>
                       <td>
                         <p>{food?.trangectionId?.slice(0, 5)}...</p>
@@ -157,6 +204,7 @@ const Oders = () => {
         openModal={openModal}
         deliveryMan={deliveryMan}
         selectOderId={selectOderId}
+        refetch={refetch}
       />
     </div>
   );

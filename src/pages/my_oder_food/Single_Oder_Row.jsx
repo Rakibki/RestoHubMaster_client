@@ -1,5 +1,3 @@
-import React from "react";
-import { AiOutlineClose } from "react-icons/ai";
 
 const Single_Oder_Row = ({ food, handleDeleteFood }) => {
   return (
@@ -24,7 +22,7 @@ const Single_Oder_Row = ({ food, handleDeleteFood }) => {
           onClick={() => handleDeleteFood(food._id)}
           className="p-4 text-white font-bold bg-[#ffa41f]"
         >
-          <AiOutlineClose />
+          {/* <AiOutlineClose /> */} X
         </button>
       </th>
     </tr>
