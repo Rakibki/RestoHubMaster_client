@@ -132,7 +132,7 @@ const Oders = () => {
       )}
 
       {data?.length > 0 && (
-        <div className=" px-16">
+        <div className="px-10">
           <div className="overflow-x-auto">
             <table className="table">
               {/* head */}
@@ -151,7 +151,7 @@ const Oders = () => {
               <tbody>
                 {data?.map((food) => {
                   return (
-                    <tr key={food._id} className="border-2">
+                    <tr key={food._id} className="border-[1px]">
                       <td>
                         <p>{food?.name}</p>
                       </td>

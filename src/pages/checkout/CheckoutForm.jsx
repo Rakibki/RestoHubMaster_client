@@ -77,9 +77,8 @@ const CheckoutForm = ({ oderInfo }) => {
           trangectionId: trangectionId || paymentIntent?.id,
         };
 
-        axiosSecure.post("/payment", paymentInfo).then((res) => {
+        axiosSecure.post(`/payment/${user?.email}`, paymentInfo).then((res) => {
           if (res?.data?.insertedId) {
-            // Swal();
             new swal("Good job!", "You clicked the button!", "success");
             naviagte("/dashboard/paymentHistory");
           }
