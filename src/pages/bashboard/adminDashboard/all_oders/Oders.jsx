@@ -63,8 +63,8 @@ const Oders = () => {
   useEffect(() => {
     if (filterText == "all") {
       setData(oders);
-    } else if (filterText == "canceled") {
-      const filterData = oders.filter((item) => item?.status === "canceled");
+    } else if (filterText == "cancel") {
+      const filterData = oders.filter((item) => item?.status === "cancel");
       setData(filterData);
     } else if (filterText == "padding") {
       const filterData = oders.filter((item) => item?.status === "padding");
@@ -117,7 +117,7 @@ const Oders = () => {
             <option value="all">All</option>
             <option value="OnTheWay">On The Way</option>
             <option value="padding">padding</option>
-            <option value="canceled">canceled</option>
+            <option value="cancel">cancel</option>
             <option value="diliverd">diliverd</option>
           </select>
         </div>
@@ -168,7 +168,7 @@ const Oders = () => {
                         <p>{food?.time}</p>
                       </td>
                       <td>
-                        <p className={` ${food?.status=='OnTheWay'&& 'text-[#4579b4] bg-[#a5b1e4]'} ${food?.status=='diliverd'&& 'text-[#22c55e] bg-[#d2f4df]'} ${food?.status==='canceled' && "text-[#ef4444] bg-[#fcd9d9]"} ${food?.status==='padding' && "text-[#f59e0b] bg-[#fdecce]"} px-3 py-2 font-medium text-center rounded-2xl`}>{food?.status}</p>
+                        <p className={` ${food?.status=='OnTheWay'&& 'text-[#4579b4] bg-[#a5b1e4]'} ${food?.status=='diliverd'&& 'text-[#22c55e] bg-[#d2f4df]'} ${food?.status==='cancel' && "text-[#ef4444] bg-[#fcd9d9]"} ${food?.status==='padding' && "text-[#f59e0b] bg-[#fdecce]"} px-3 py-2 font-medium text-center rounded-2xl`}>{food?.status}</p>
                       </td>
                       <td>
                         <p>{food?.trangectionId?.slice(0, 5)}...</p>

@@ -1,15 +1,37 @@
 import { useQuery } from "@tanstack/react-query";
 import Loadiing from "../../../../shared/Loadiing";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { authContext } from "../../../../providers/AuthProvaider";
 import { AiOutlineClose } from "react-icons/ai";
-import { FaRegEdit } from "react-icons/fa";
-import swal from "sweetalert"
+import swal from "sweetalert";
+import ReviewModal from "../../../../components/modals/reviewModal/ReviewModal";
 
 const PaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(authContext);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
 
   const { isPending, data, refetch } = useQuery({
     queryKey: ["myPaymentHistory"],
@@ -41,6 +63,9 @@ const PaymentHistory = () => {
     });
   };
 
+  const handleReview = (id) => {
+    setIsOpen(true);
+  }
 
   return (
     <div>
@@ -97,7 +122,7 @@ const PaymentHistory = () => {
                             food?.status == "diliverd" &&
                             "text-[#22c55e] bg-[#d2f4df]"
                           } ${
-                            food?.status === "canceled" &&
+                            food?.status === "cancel" &&
                             "text-[#ef4444] bg-[#fcd9d9]"
                           } ${
                             food?.status === "padding" &&
@@ -119,6 +144,11 @@ const PaymentHistory = () => {
                         >
                           <AiOutlineClose />
                         </button>
+                        {food.status === "diliverd" && (
+                          <button onClick={() => handleReview(food?._id)} className="px-4 py-2 text-white font-bold bg-[#ffa41f]">
+                            Review
+                          </button>
+                        )}
                       </th>
                     </tr>
                   );
@@ -128,6 +158,7 @@ const PaymentHistory = () => {
           </div>
         </div>
       )}
+      <ReviewModal customStyles={customStyles} openModal={handleReview} closeModal={closeModal} modalIsOpen={modalIsOpen} />
     </div>
   );
 };
