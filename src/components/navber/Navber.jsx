@@ -101,7 +101,7 @@ const Navber = ({ children }) => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="w-full flex max-w-[1250px] justify-between px-10 py-2 navbar bg-black bg-opacity-60 fixed z-20 text-white">
+          <div className="w-full flex max-w-[1250px] justify-between px-10 py-2 navbar bg-black bg-opacity-60 fixed z-40 text-white">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"

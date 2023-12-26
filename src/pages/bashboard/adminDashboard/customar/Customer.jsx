@@ -17,9 +17,23 @@ const Customer = () => {
   if (isPending) <Loadiing />;
 
   return (
-    <div>
+    <div className="mt-10">
+      <div className="flex mb-4 px-10 items-center justify-between">
+        <div className="flex gap-3">
+          <div className="w-2 h-8 bg-[#ffa41f]"></div>
+          <h1 className="text-3xl font-semibold">Customers List</h1>
+        </div>
+        <div>
+          <button
+            type="submit"
+            className="px-5 py-2 mt-4 bg-[#ffa41f] transition-all  text-white font-bold hover:opacity-80"
+          >
+            Add A New Customer
+          </button>
+        </div>
+      </div>
       {data?.length > 0 && (
-        <div className="mt-10 px-8 py-16">
+        <div className="px-10">
           <div className="overflow-x-auto">
             <table className="table">
               {/* head */}

@@ -1,4 +1,7 @@
 const CustomerRow = ({ customer }) => {
+
+  console.log(customer);
+
   return (
     <tr className="border-2">
       <td>
@@ -17,7 +20,9 @@ const CustomerRow = ({ customer }) => {
         <h2 className="text-base">{customer?.email}</h2>
       </td>
       <td>
-        <h2 className="text-base">0</h2>
+        {
+          customer?.oder ? <h2 className="text-base">{customer?.oder}</h2> : <h2 className="text-base">0</h2>
+        }
       </td>
       <td>
         <h2 className="text-base">0</h2>

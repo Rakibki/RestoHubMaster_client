@@ -4,12 +4,14 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useContext } from "react";
 import { authContext } from "../../../../providers/AuthProvaider";
 import { AiOutlineClose } from "react-icons/ai";
+import { FaRegEdit } from "react-icons/fa";
+import swal from "sweetalert"
 
 const PaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(authContext);
 
-  const { isPending, data } = useQuery({
+  const { isPending, data, refetch } = useQuery({
     queryKey: ["myPaymentHistory"],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -21,8 +23,24 @@ const PaymentHistory = () => {
   if (isPending) <Loadiing />;
 
   const handleDeleteFood = (id) => {
-    alert(id);
+    swal({
+      title: "Are you sure?",
+      text: "Are you sure you want to delete the food order?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axiosSecure.delete(`/my_Oder_food_delete/${id}`).then((res) => {
+          refetch();
+        });
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      }
+    });
   };
+
 
   return (
     <div>
@@ -35,7 +53,7 @@ const PaymentHistory = () => {
       )}
 
       {data?.length > 0 && (
-        <div className="mt-10 p-16">
+        <div className="mt-10 px-6 py-16">
           <div className="overflow-x-auto">
             <table className="table">
               {/* head */}
@@ -71,16 +89,33 @@ const PaymentHistory = () => {
                         <p>{food?.time}</p>
                       </td>
                       <td>
-                        <p>{food?.status}</p>
+                        <p
+                          className={` ${
+                            food?.status == "OnTheWay" &&
+                            "text-[#4579b4] bg-[#a5b1e4]"
+                          } ${
+                            food?.status == "diliverd" &&
+                            "text-[#22c55e] bg-[#d2f4df]"
+                          } ${
+                            food?.status === "canceled" &&
+                            "text-[#ef4444] bg-[#fcd9d9]"
+                          } ${
+                            food?.status === "padding" &&
+                            "text-[#f59e0b] bg-[#fdecce]"
+                          } px-3 py-2 font-medium text-center rounded-2xl`}
+                        >
+                          {food?.status}
+                        </p>
                       </td>
                       <td>
-                        <p>{food?.trangectionId?.slice(0,5)}...</p>
+                        <p>{food?.trangectionId?.slice(0, 5)}...</p>
                       </td>
 
-                      <th>
+                      <th className="flex gap-2 ">
                         <button
+                          disabled={food?.status == "OnTheWay"}
                           onClick={() => handleDeleteFood(food._id)}
-                          className="p-4 text-white font-bold bg-[#ffa41f]"
+                          className="px-4 py-2 text-white font-bold bg-[#ffa41f]"
                         >
                           <AiOutlineClose />
                         </button>

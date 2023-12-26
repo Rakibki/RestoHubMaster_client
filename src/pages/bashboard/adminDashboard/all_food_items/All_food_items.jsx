@@ -119,6 +119,7 @@ const All_food_items = () => {
           </div>
         </div>
       )}
+      
       <EditFoodModal
         foodId={foodId}
         customStyles={customStyles}

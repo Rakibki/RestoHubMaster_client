@@ -5,6 +5,7 @@ import Loadiing from "../../shared/Loadiing";
 import { AiOutlineClose } from "react-icons/ai";
 import Page_title from "../../shared/page_title/Page_title";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import swal from "sweetalert"
 
 const MyBookTable = () => {
   const { user } = useContext(authContext);
@@ -22,12 +23,31 @@ const MyBookTable = () => {
     return <Loadiing />;
   }
 
+  const handleTahleDelete = async (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Are you sure you want to delete the food?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axiosSecure.delete(`/table/${id}`).then((res) => {
+          if (res.data?.deletedCount > 0) {
+            refetch();
+            swal("Deleted successfully", {
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  }
+
 
   return (
     <div>
-      
       <Page_title>Table Book history</Page_title>
-
       {data.length > 0 && (
         <div className="mt-10 p-16">
           <div className="overflow-x-auto">
@@ -64,7 +84,7 @@ const MyBookTable = () => {
                       </td>
                       <th>
                         <button
-                          // onClick={() => handleDeleteFood(food._id)}
+                          onClick={() => handleTahleDelete(food._id)}
                           className="p-4 text-white font-bold bg-[#ffa41f]"
                         >
                           <AiOutlineClose />

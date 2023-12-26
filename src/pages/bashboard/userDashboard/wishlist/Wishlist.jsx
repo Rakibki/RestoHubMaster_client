@@ -19,6 +19,20 @@ const Wishlist = () => {
   });
 
 
+  const handleAddToCard = async (food) => {
+    const cardInfo = {
+      email: user?.email,
+      Food_name: food?.Food_name,
+      category: food?.category,
+      Regual_Price: food?.Regual_Price,
+      image: food?.image,
+      quectity: food?.quectity,
+      ratting: food?.ratting,
+    } 
+    const res = await axiosSecure.post('/card', cardInfo)
+    console.log(res?.data);
+  }
+
 
   if (isPending) <Loadiing />;
 
@@ -42,6 +56,7 @@ const Wishlist = () => {
       }
     });
   };
+
 
   return (
     <div className="p-10">
@@ -67,7 +82,7 @@ const Wishlist = () => {
               </div>
 
               <div className="flex gap-2 flex-col">
-                <button className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white">
+                <button onClick={() => handleAddToCard(food)} className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white">
                   Add To Card
                 </button>
                 <button

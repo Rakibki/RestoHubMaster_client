@@ -38,7 +38,7 @@ const MyCard = ({ setOpenCard }) => {
       )}
 
       {myCard?.length > 0 &&
-        myCard?.slice(0, 4)?.map((food) => {
+        myCard?.slice(0, 3)?.map((food) => {
           return (
             <div
               key={food._id}
