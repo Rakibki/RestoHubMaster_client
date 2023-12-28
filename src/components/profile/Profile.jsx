@@ -16,8 +16,8 @@ const Profile = () => {
   return (
     <div className="bg-[#f5f6f6] flex justify-center items-center h-screen">
       <div className="w-[50%] shadow-2xl relative p-6 rounded-xl bg-white">
-        <BsThreeDots className="absolute left-4 top-4 text-2xl" />
-        <FiPlus className="absolute right-4 top-4 text-2xl" />
+        <BsThreeDots className="absolute text-[#ffa41f] left-4 top-4 text-2xl" />
+        <FiPlus className="absolute text-[#ffa41f] right-4 top-4 text-2xl" />
 
         <div className="mt-6">
           <div className="w-24 relative mx-auto">

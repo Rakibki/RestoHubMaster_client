@@ -49,7 +49,7 @@ const Add_food = () => {
         <h1 className="text-3xl font-semibold">Add A Food </h1>
       </div>
       <div className="flex my-10 p-6 justify-center">
-        <div className="w-[90%] mx-auto md:w-[80%] lg:w-[60%] p-4 border-2">
+        <div className="w-[90%] bg-white shadow-2xl mx-auto md:w-[80%] lg:w-[60%] p-4 border-2">
           <form onSubmit={handle_Add_food}>
             <div className="flex gap-3">
               <input

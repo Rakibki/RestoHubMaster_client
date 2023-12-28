@@ -39,7 +39,7 @@ const TopFiveSellFood = () => {
           {data?.map((food) => {
             return (
               <div key={food?._id}>
-                <SwiperSlide className="border-[1px] rounded-3xl p-5">
+                <SwiperSlide className="border-[1px] bg-white rounded-3xl p-5">
                   <img
                     className="w-[100px] mb-2 mx-auto h-[100px] rounded-full"
                     src={food?.image}

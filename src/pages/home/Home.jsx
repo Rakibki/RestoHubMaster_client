@@ -6,6 +6,7 @@ import Clients from "./Clients.JSX";
 import Top_food from "./Top_food";
 import { Helmet } from "react-helmet";
 import Reservation from "./Reservation";
+import MyStory from "./MyStory";
 
 const Home = () => {
   return (
@@ -18,8 +19,8 @@ const Home = () => {
       <Top_food />
       <About_section />
       <Gallery />
+      <MyStory />
       <Chefs />
-      {/* <Chooss /> */}
       <Clients />
       <Reservation />
     </div>

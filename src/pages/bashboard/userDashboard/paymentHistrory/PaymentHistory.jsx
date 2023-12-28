@@ -6,6 +6,7 @@ import { authContext } from "../../../../providers/AuthProvaider";
 import { AiOutlineClose } from "react-icons/ai";
 import swal from "sweetalert";
 import ReviewModal from "../../../../components/modals/reviewModal/ReviewModal";
+import Page_title from "../../../../shared/page_title/Page_title";
 
 const PaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
@@ -77,12 +78,14 @@ const PaymentHistory = () => {
         ""
       )}
 
+        <Page_title>Payment History</Page_title>
+
       {data?.length > 0 && (
         <div className="mt-10 px-6 py-16">
           <div className="overflow-x-auto">
             <table className="table">
               {/* head */}
-              <thead>
+              <thead className="bg-white">
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
@@ -97,7 +100,7 @@ const PaymentHistory = () => {
               <tbody>
                 {data?.map((food) => {
                   return (
-                    <tr key={food._id} className="border-2">
+                    <tr key={food._id} className="border-2 border-white">
                       <td>
                         <p>{food?.name}</p>
                       </td>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Page_title from "../../shared/page_title/Page_title";
 import SingleFood from "./SingleFood";
 import { useQuery } from "@tanstack/react-query";
 import Loadiing from "../../shared/Loadiing";

@@ -53,7 +53,7 @@ const MyBookTable = () => {
           <div className="overflow-x-auto">
             <table className="table">
               {/* head */}
-              <thead>
+              <thead className="bg-white">
                 <tr>
                   <th>Date</th>
                   <th>TIme</th>
@@ -66,7 +66,7 @@ const MyBookTable = () => {
               <tbody>
                 {data.map((food) => {
                   return (
-                    <tr key={food._id} className="border-2">
+                    <tr key={food._id} className="border-2 border-white">
                       <td>
                         {food.date}
                       </td>

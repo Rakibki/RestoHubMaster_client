@@ -5,7 +5,6 @@ import Analytics from "./Analytics";
 import FoodChart from "./FoodChart";
 import SaleChat from "./saleChat";
 import DayAnalytics from "./DayAnalytics";
-import FoodAvailable from "./FoodAvailable";
 import TopFiveSellFood from "./TopFiveSellFood";
 
 const AdminHome = () => {

@@ -88,7 +88,7 @@ const DayAnalytics = () => {
 
   return (
     <div>
-      <div className="grid gap-2 grid-cols-11">
+      <div className="grid bg-white gap-2 grid-cols-11">
         <div className="col-span-7">
           <Tabs
             selectedIndex={tabIndex}

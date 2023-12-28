@@ -28,17 +28,11 @@ const AllTableBook = () => {
           <h1 className="text-3xl font-semibold">Order History</h1>
         </div>
         <div>
-          <button
-            type="submit"
-            className="px-5 py-2 mt-4 bg-[#ffa41f] transition-all  text-white font-bold hover:opacity-80"
-          >
-            Add Food
-          </button>
         </div>
       </div>
       <table className="table">
         {/* head */}
-        <thead>
+        <thead className="bg-white">
           <tr>
             <th>Name</th>
             <th>Email</th>
@@ -52,7 +46,7 @@ const AllTableBook = () => {
         <tbody>
           {data?.map((item) => {
             return (
-              <tr className="border-2" key={item?._id}>
+              <tr className="border-2 border-white" key={item?._id}>
                 <td>{item?.name}</td>
                 <td>{item?.email}</td>
                 <td>{item?.oderNumber}</td>

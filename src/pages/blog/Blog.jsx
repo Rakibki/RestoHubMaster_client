@@ -1,4 +1,3 @@
-import React from "react";
 import Page_title from "../../shared/page_title/Page_title";
 import {Helmet} from "react-helmet";
 
@@ -54,8 +53,6 @@ const Blog = () => {
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 };

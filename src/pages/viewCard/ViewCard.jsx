@@ -77,10 +77,10 @@ const ViewCard = () => {
         <div className="col-span-5">
           {myCard?.length > 0 && (
             <div className="mt-10 p-6">
-              <div className="overflow-x-auto">
+              <div className=" overflow-x-auto">
                 <table className="table">
                   {/* head */}
-                  <thead>
+                  <thead className="bg-white">
                     <tr>
                       <th>Image</th>
                       <th>Name</th>
@@ -106,7 +106,7 @@ const ViewCard = () => {
 
         {myCard?.length > 0 && (
           <div className="col-span-2">
-            <div className="mt-24 h-[350px] rounded-xl p-6 w-full border-2">
+            <div className="mt-24 bg-white shadow-lg h-[350px] rounded-xl p-6 w-full border-2">
               <h2 className="text-2xl font-semibold mb-4">Cart Totals</h2>
 
               <div className="flex mt-2 justify-between">
@@ -146,7 +146,7 @@ const ViewCard = () => {
               </Link>
             </div>
 
-            <div className="mt-10 h-[200px] rounded-xl p-6 w-full border-2">
+            <div className="mt-10 bg-white shadow-lg h-[200px] rounded-xl p-6 w-full border-2">
               <h2 className="text-2xl font-semibold mb-4">Coupon Code</h2>
 
               <div className="form-control">

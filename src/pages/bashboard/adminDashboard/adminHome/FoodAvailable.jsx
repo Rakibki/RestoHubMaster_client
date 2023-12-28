@@ -22,7 +22,7 @@ const FoodAvailable = () => {
     <div className="mt-10">
       <div>
         <div className="flex shadow-xl gap-3">
-          <div className="border-[1px] rounded-3xl w-full p-3">
+          <div className="border-[1px] bg-white rounded-3xl w-full p-3">
             <h2 className="mb-1 text-[#64748b]">Breakfast</h2>
             <ProgressBar
               bgColor="#ffa41f"
@@ -31,7 +31,7 @@ const FoodAvailable = () => {
               maxCompleted={10}
             />
           </div>
-          <div className="border-[1px] shadow-xl rounded-3xl w-full p-3">
+          <div className="border-[1px] bg-white shadow-xl rounded-3xl w-full p-3">
             <h2 className="mb-1 text-[#64748b]">Appetizers</h2>
             <ProgressBar
               bgColor="#ffa41f"
@@ -43,7 +43,7 @@ const FoodAvailable = () => {
         </div>
 
         <div className="flex mt-4 shadow-xl gap-3">
-          <div className="border-[1px] rounded-3xl w-full p-3">
+          <div className="border-[1px] bg-white rounded-3xl w-full p-3">
             <h2 className="mb-1 text-[#64748b]">Desserts</h2>
             <ProgressBar
               bgColor="#ffa41f"
@@ -53,7 +53,7 @@ const FoodAvailable = () => {
             />
           </div>
 
-          <div className="border-[1px] shadow-xl rounded-3xl w-full p-3">
+          <div className="border-[1px] bg-white shadow-xl rounded-3xl w-full p-3">
             <h2 className="mb-1 text-[#64748b]">Family Dishes</h2>
             <ProgressBar
               bgColor="#ffa41f"

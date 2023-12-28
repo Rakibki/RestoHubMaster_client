@@ -4,6 +4,7 @@ import { authContext } from "../../../../providers/AuthProvaider";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Loadiing from "../../../../shared/Loadiing";
 import Swal from "sweetalert2";
+import Page_title from "../../../../shared/page_title/Page_title";
 
 const Wishlist = () => {
   const { user } = useContext(authContext);
@@ -18,7 +19,6 @@ const Wishlist = () => {
     },
   });
 
-
   const handleAddToCard = async (food) => {
     const cardInfo = {
       email: user?.email,
@@ -28,11 +28,10 @@ const Wishlist = () => {
       image: food?.image,
       quectity: food?.quectity,
       ratting: food?.ratting,
-    } 
-    const res = await axiosSecure.post('/card', cardInfo)
+    };
+    const res = await axiosSecure.post("/card", cardInfo);
     console.log(res?.data);
-  }
-
+  };
 
   if (isPending) <Loadiing />;
 
@@ -57,46 +56,51 @@ const Wishlist = () => {
     });
   };
 
-
   return (
-    <div className="p-10">
-      {data?.map((food) => {
-        return (
-          <div
-            className="border-[1px] mb-3 p-6 items-center flex justify-between"
-            key={food?.id}
-          >
-            <div className=" flex items-center gap-4">
-              <img className="h-[100px] w-[150px]" src={food?.image} alt="" />
-              <div>
-                <h2 className="text-[#ffa41f]">{food?.category}</h2>
-                <h2 className="text-lg">{food?.Food_name}</h2>
+    <>
+      <Page_title>Wish List</Page_title>
+      <div className="p-10">
+        {data?.map((food) => {
+          return (
+            <div
+              className="border-[1px] bg-white mb-3 p-6 items-center flex justify-between"
+              key={food?.id}
+            >
+              <div className=" flex items-center gap-4">
+                <img className="h-[100px] w-[150px]" src={food?.image} alt="" />
+                <div>
+                  <h2 className="text-[#ffa41f]">{food?.category}</h2>
+                  <h2 className="text-lg">{food?.Food_name}</h2>
+                </div>
               </div>
-            </div>
-            <div className="flex">
-              <div className="mr-6">
-                <h2 className="text-xl text-[#64748b]">${food?.Price}</h2>
-                <h2 className="text-lg line-through text-[#64748b]">
-                  {food?.Regual_Price}
-                </h2>
-              </div>
+              <div className="flex">
+                <div className="mr-6">
+                  <h2 className="text-xl text-[#64748b]">${food?.Price}</h2>
+                  <h2 className="text-lg line-through text-[#64748b]">
+                    {food?.Regual_Price}
+                  </h2>
+                </div>
 
-              <div className="flex gap-2 flex-col">
-                <button onClick={() => handleAddToCard(food)} className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white">
-                  Add To Card
-                </button>
-                <button
-                  onClick={() => handleRemove(food?._id)}
-                  className="px-6  py-2 rounded-lg hover:opacity-80 border-[#ffa41f] border-2  border-none font-semibold outline-none text-[#ffa41f]"
-                >
-                  Remove
-                </button>
+                <div className="flex gap-2 flex-col">
+                  <button
+                    onClick={() => handleAddToCard(food)}
+                    className="px-6 py-2 rounded-lg hover:opacity-80 bg-[#ffa41f] border-none font-semibold outline-none text-white"
+                  >
+                    Add To Card
+                  </button>
+                  <button
+                    onClick={() => handleRemove(food?._id)}
+                    className="px-6  py-2 rounded-lg hover:opacity-80 border-[#ffa41f] border-2  border-none font-semibold outline-none text-[#ffa41f]"
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

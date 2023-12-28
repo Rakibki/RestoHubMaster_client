@@ -49,7 +49,7 @@ const MyDeliveryList = () => {
       swal("Successfully delivered", {
         icon: "success",
       });
-      refetch()
+      refetch();
     }
   };
 
@@ -61,12 +61,6 @@ const MyDeliveryList = () => {
           <h1 className="text-3xl font-semibold">My Delivery List</h1>
         </div>
         <div>
-          <button
-            type="submit"
-            className="px-5 py-2 mt-4 bg-[#ffa41f] transition-all  text-white font-bold hover:opacity-80"
-          >
-            Add Food
-          </button>
         </div>
       </div>
 
@@ -81,7 +75,7 @@ const MyDeliveryList = () => {
           <div className="overflow-x-auto">
             <table className="table">
               {/* head */}
-              <thead>
+              <thead className="bg-white">
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
@@ -96,7 +90,7 @@ const MyDeliveryList = () => {
               </thead>
               <tbody>
                 {data?.map((food) => (
-                  <tr key={food._id} className="border-2 items-center">
+                  <tr key={food._id} className="border-2 border-white items-center">
                     <td>{food?.name}</td>
                     <td>{food?.email}</td>
                     <td>{food?.totalPrice}</td>

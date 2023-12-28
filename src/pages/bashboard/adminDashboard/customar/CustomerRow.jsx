@@ -3,7 +3,7 @@ const CustomerRow = ({ customer }) => {
   console.log(customer);
 
   return (
-    <tr className="border-2">
+    <tr className="border-2 border-white">
       <td>
         <div className="flex items-center space-x-3">
           <div className="avatar">

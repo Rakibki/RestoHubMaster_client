@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const FoodRow = ({ food, handleDeleteFood, handleFoodEdit, foodId }) => {
   console.log(foodId);
   return (
-    <tr className="border-2 items-center">
+    <tr className="border-2 border-white items-center">
       <td>
         <div className="flex items-center space-x-3">
           <div className="avatar">

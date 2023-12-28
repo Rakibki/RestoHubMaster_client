@@ -69,7 +69,7 @@ const Oders = () => {
     } else if (filterText == "padding") {
       const filterData = oders.filter((item) => item?.status === "padding");
       setData(filterData);
-    } else if (filterText == "On The Way") {
+    } else if (filterText == "OnTheWay") {
       const filterData = oders.filter((item) => item?.status === "On The Way");
       setData(filterData);
     } else if (filterText == "diliverd") {
@@ -136,7 +136,7 @@ const Oders = () => {
           <div className="overflow-x-auto">
             <table className="table">
               {/* head */}
-              <thead>
+              <thead className="bg-white">
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
@@ -151,7 +151,7 @@ const Oders = () => {
               <tbody>
                 {data?.map((food) => {
                   return (
-                    <tr key={food._id} className="border-[1px]">
+                    <tr key={food._id} className="border-[2px] border-white">
                       <td>
                         <p>{food?.name}</p>
                       </td>
