@@ -22,7 +22,7 @@ const Navber = ({ children }) => {
   GetRole().then((res) => setRole(res?.role));
 
   const navitems = (
-    <>
+    <div className="flex gap-6">
       <li>
         <NavLink
           className={({ isActive, isPending }) =>
@@ -79,7 +79,21 @@ const Navber = ({ children }) => {
           Blog
         </NavLink>
       </li>
-    </>
+      <li>
+        <NavLink
+          to={"/contactUs"}
+          className={({ isActive, isPending }) =>
+            isPending
+              ? ""
+              : isActive
+              ? "text-[#ffa41f]  border-[#ffa41f] text-lg font-Inter"
+              : ""
+          }
+        >
+          Contact Us
+        </NavLink>
+      </li>
+    </div>
   );
 
   const handleLogOut = () => {

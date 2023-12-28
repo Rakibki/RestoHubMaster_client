@@ -31,6 +31,7 @@ import DevliveryManHome from "../pages/bashboard/devliveryManDashboard/devlivery
 import MyDeliveryList from "../pages/bashboard/devliveryManDashboard/myDeliveryList/MyDeliveryList";
 import AllTableBook from "../pages/bashboard/adminDashboard/allTableBook/AllTableBook";
 import MyReview from "../pages/bashboard/devliveryManDashboard/MyReview/MyReview";
+import ContactUs from "../pages/contactUs/ContactUs";
 
 const axiosLocal = useAxiosLocal();
 
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/contactUs",
+        element: <ContactUs />
       },
       {
         path: "/login",
